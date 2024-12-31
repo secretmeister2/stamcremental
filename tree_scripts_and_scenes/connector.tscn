@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://5qheoliv5td4"]
+
+[ext_resource type="Script" path="res://tree_scripts_and_scenes/connector.gd" id="1_x0e6h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0e6h"]
+size = Vector2(5, 60)
+
+[node name="Connector" type="Node2D"]
+script = ExtResource("1_x0e6h")
+length = 200
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(3, 100)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.5
+offset_top = -50.0
+offset_right = 1.5
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.171039, 0.171039, 0.171039, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_x0e6h")

@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr2log5tww6gm"]
+
+[ext_resource type="Script" path="res://tree_scripts_and_scenes/tree1node.gd" id="1_ko5xn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ko5xn"]
+size = Vector2(38, 38)
+
+[node name="Tree1Node" type="Node2D"]
+script = ExtResource("1_ko5xn")
+status = null
+typecosts = Dictionary[int, int]({
+0: 15,
+1: 10,
+2: 5
+})
+rarity = null
+type = null
+raritycolors = Array[Color]([Color(0, 0, 0, 1), Color(0.331019, 0.331019, 0.331019, 1), Color(0.316517, 0.524663, 1, 1), Color(0.533158, 0.462865, 0, 1), Color(0.590768, 0.0810507, 0.676508, 1), Color(0.651235, 0.293422, 0, 1)])
+
+[node name="ColorShade" type="ColorRect" parent="."]
+z_index = 2
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0, 0, 0, 0.235294)
+
+[node name="BaseColor" type="ColorRect" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(36, 36)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.491584, 0.491583, 0.491583, 1)
+
+[node name="RarityColor" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Connects" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ko5xn")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
