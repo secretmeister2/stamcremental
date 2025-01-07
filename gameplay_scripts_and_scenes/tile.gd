@@ -6,5 +6,6 @@ class_name Tile
 @export var col:Color
 ## The size of this tile, 1 for full tile
 @export var size:int
-## A list of the required parameters for the tile to be placed
-@export var placement_conditions:Array[TilePlaceCon]
+## The size of a blob
+@export var blob_size
+## Max blobs

@@ -3,7 +3,7 @@ extends Node2D
 var grid_size: Vector2
 var max_stam: float=10
 var stam: float=max_stam
-var unlocked_base_tiles:Array[Tile]
+var unlocked_base_tiles:Array[Tile]=[preload()]
 var unlocked_decos:Array[Tile]
 var tile_rarities:Dictionary[Tile,int]
 var deco_rarities:Dictionary[Tile,int]
@@ -22,12 +22,5 @@ func gen():
 			var rect = ColorRect.new()
 			rect.name = "Tile_"+str(i)+"_"+str(j)
 			row.add_child(rect)
-			var tiletype = randomize_value(rect)
+			var tiletype = unlocked_base_tiles[0]
 			rect.set_meta("tile", tiletype)
-
-func randomize_value(rect:ColorRect)-> Tile:
-	var neighbourtiles = []
-	for i in range(-1,1):
-		for j in range(-1,1):
-			neighbourtiles.append(get_relative(rect,Vector2(i,j)).get_meta("tile"))
-	

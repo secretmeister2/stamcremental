@@ -69,16 +69,8 @@ func gen_board(amount:int):
 				neighbours.erase(connection.connectedto[1])
 		for neighbour in neighbours:
 			if node.connections.size() <1 or randf_range(node.connections.size(),2)<1.4:
-				var connection = connector.instantiate()
-				$Connects.add_child(connection)
-				connection.get_node("ColorRect").custom_minimum_size = Vector2(5,neighbour.global_position.distance_to(node.global_position))
-				connection.connectedto=[node,neighbour] as Array[BaseTreeNode]
-				connection.rotation=node.global_position.angle_to_point(neighbour.global_position)-PI/2
-				connection.global_position=node.global_position.lerp(neighbour.global_position, 0.5)
-				neighbour.connections.append(connection)
-				node.connections.append(connection)
-				neighbour.connected_to.append(node)
-				node.connected_to.append(neighbour)
+				connectnodes(node, neighbour)
+
 	origin.connect_check()
 	for node in $Nodes.get_children():
 		if not node.conn_orig:
@@ -86,3 +78,17 @@ func gen_board(amount:int):
 			locs.erase(node)
 			dist_to_nearest_node(node.global_position, locs)
 	origin.status="available"
+
+
+func connectnodes(node1:BaseTreeNode, node2:BaseTreeNode):
+	if not node2 in node1.connected_to:
+		var connection = connector.instantiate()
+		$Connects.add_child(connection)
+		connection.get_node("ColorRect").custom_minimum_size = Vector2(5,node2.global_position.distance_to(node1.global_position))
+		connection.connectedto=[node1,node2] as Array[BaseTreeNode]
+		connection.rotation=node1.global_position.angle_to_point(node2.global_position)-PI/2
+		connection.global_position=node1.global_position.lerp(node2.global_position, 0.5)
+		node2.connections.append(connection)
+		node1.connections.append(connection)
+		node2.connected_to.append(node1)
+		node1.connected_to.append(node2)
