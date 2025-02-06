@@ -1,21 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr2log5tww6gm"]
-
-[ext_resource type="Script" path="res://tree_scripts_and_scenes/tree1node.gd" id="1_ko5xn"]
+[gd_scene load_steps=2 format=3 uid="uid://dr2log5tww6gm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ko5xn"]
 size = Vector2(38, 38)
 
 [node name="Tree1Node" type="Node2D"]
-script = ExtResource("1_ko5xn")
-status = null
-typecosts = Dictionary[int, int]({
-0: 15,
-1: 10,
-2: 5
-})
-rarity = null
-type = null
-raritycolors = Array[Color]([Color(0, 0, 0, 1), Color(0.331019, 0.331019, 0.331019, 1), Color(0.316517, 0.524663, 1, 1), Color(0.533158, 0.462865, 0, 1), Color(0.590768, 0.0810507, 0.676508, 1), Color(0.651235, 0.293422, 0, 1)])
 
 [node name="ColorShade" type="ColorRect" parent="."]
 z_index = 2
@@ -53,8 +41,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Connects" type="Node2D" parent="."]
+color = Color(0.67059, 0.428767, 0.895374, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 

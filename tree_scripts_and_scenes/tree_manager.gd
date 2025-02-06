@@ -8,11 +8,6 @@ var connector = preload("res://tree_scripts_and_scenes/connector.tscn")
 
 var locations:Dictionary[Vector2,Global.rarity]
 
-func dist_to_nearest_node(place: Vector2, array:Array[Vector2]) -> int:
-	var nearest= place.distance_to(Vector2(0,0))
-	for dist in array:
-		if dist.distance_to(place) < nearest: nearest = dist.distance_to(place)
-	return nearest
 
 func locationsofrarity(rarity:Global.rarity)->Array[Vector2]:
 	var array:Array[Vector2]
@@ -23,7 +18,8 @@ func locationsofrarity(rarity:Global.rarity)->Array[Vector2]:
 var origin: BaseTreeNode
 
 func _ready() -> void:
-	gen_board(30)
+	var treee = SkillTree.new(15, ["Fire", "Earth"])
+	construct_tree(treee)
 
 func gen_board(amount:int):
 	var j = 0
@@ -32,11 +28,11 @@ func gen_board(amount:int):
 			locations[Vector2(0,0)]=3
 		else: 
 			var vector:Vector2
-			while dist_to_nearest_node(vector, locations.keys()) < 100 or dist_to_nearest_node(vector, locations.keys())>150:
+			while Global.dist_to_nearest_node(vector, locations.keys()) < 100 or Global.dist_to_nearest_node(vector, locations.keys())>150:
 				vector = (j+10)*Vector2(randi_range(-20,20),randi_range(-20,20))
 			var distfromorig = Vector2(0,0).distance_to(vector)
-			var disttoepic = dist_to_nearest_node(vector, locationsofrarity(4))
-			var disttoleg = dist_to_nearest_node(vector, locationsofrarity(5))
+			var disttoepic = Global.dist_to_nearest_node(vector, locationsofrarity(4))
+			var disttoleg = Global.dist_to_nearest_node(vector, locationsofrarity(5))
 			match ceil(randf_range(0.5,2)+(disttoleg/250)+(disttoepic/200)+(distfromorig/150)):
 				1.0: locations[vector]=Global.rarity.common
 				2.0: locations[vector]=Global.rarity.common
@@ -57,9 +53,9 @@ func gen_board(amount:int):
 		newnode.global_position=key
 		newnode.roll(Vector2(0,0).distance_to(newnode.global_position))
 		$Nodes.add_child(newnode)
-	for node:BaseTreeNode in $Nodes.get_children():
+	for node in $Nodes.get_children():
 		var neighbours: Array[BaseTreeNode]
-		for subnode:BaseTreeNode in $Nodes.get_children():
+		for subnode in $Nodes.get_children():
 			if subnode == node: break
 			if node.global_position.distance_to(subnode.global_position)<160:
 				neighbours.append(subnode)
@@ -67,18 +63,37 @@ func gen_board(amount:int):
 			if node in connection.connectedto:
 				neighbours.erase(connection.connectedto[0])
 				neighbours.erase(connection.connectedto[1])
-		for neighbour in neighbours:
-			if node.connections.size() <1 or randf_range(node.connections.size(),2)<1.4:
-				connectnodes(node, neighbour)
+		#for neighbour in neighbours:
+			#if node.connections.size() <1 or randf_range(node.connections.size(),2)<1.4:
+				#connectnodes(node, neighbour)
 
 	origin.connect_check()
 	for node in $Nodes.get_children():
 		if not node.conn_orig:
 			var locs = locations.keys().duplicate()
 			locs.erase(node)
-			dist_to_nearest_node(node.global_position, locs)
+			Global.dist_to_nearest_node(node.global_position, locs)
 	origin.status="available"
 
+func construct_tree(tree:SkillTree):
+	for place in tree.tree.keys():
+		var nodedata=tree.tree[place]
+		var node=treenode.instantiate()
+		node.global_position=place
+		node.set_meta("node",nodedata)
+		node.get_node("RarityColor").color = Global.raritycolors[nodedata.rarity]
+		$Nodes.add_child(node)
+	for node in $Nodes.get_children():
+		var nodedata=node.get_meta("node")
+		for tonode in nodedata.connected_to:
+			var tonodepos = tree.tree.find_key(tonode)
+			var connection = connector.instantiate()
+			var place = node.global_position
+			connection.get_node("ColorRect").custom_minimum_size = Vector2(5,tonodepos.distance_to(place))
+			connection.connectedto=[nodedata,tonode] as Array[BaseTreeNode]
+			connection.rotation=place.angle_to_point(tonodepos)-PI/2
+			connection.global_position=place.lerp(tonodepos, 0.5)
+			$Connects.add_child(connection)
 
 func connectnodes(node1:BaseTreeNode, node2:BaseTreeNode):
 	if not node2 in node1.connected_to:

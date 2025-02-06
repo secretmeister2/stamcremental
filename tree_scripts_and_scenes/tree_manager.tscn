@@ -9,9 +9,6 @@ script = ExtResource("1_to3ld")
 [node name="Tree1Node" parent="." instance=ExtResource("2_terwb")]
 visible = false
 position = Vector2(1, 4)
-status = ""
-rarity = 0
-type = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5qheoliv5td4"]
 
-[ext_resource type="Script" path="res://tree_scripts_and_scenes/connector.gd" id="1_x0e6h"]
+[ext_resource type="Script" uid="uid://ch7xwng4a3jsb" path="res://tree_scripts_and_scenes/connector.gd" id="1_x0e6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0e6h"]
 size = Vector2(5, 60)
@@ -22,7 +22,7 @@ offset_right = 1.5
 offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.171039, 0.171039, 0.171039, 1)
+color = Color(0.318435, 0.191985, 0.449055, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

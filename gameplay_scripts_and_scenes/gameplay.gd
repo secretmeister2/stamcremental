@@ -3,14 +3,15 @@ extends Node2D
 var grid_size: Vector2
 var max_stam: float=10
 var stam: float=max_stam
-var unlocked_base_tiles:Array[Tile]=[preload()]
+var unlocked_base_tiles:Array[Tile]
 var unlocked_decos:Array[Tile]
 var tile_rarities:Dictionary[Tile,int]
 var deco_rarities:Dictionary[Tile,int]
 
 func get_relative(tile:ColorRect, offset:Vector2)->ColorRect:
 	var current_y=tile.get_parent().name.right(1)
-	var targetrow=$RowContainer.get_node("Row_" + str(int(current_y)+offset.y))
+	var targetrow=$RowContainer.get_node_or_null("Row_" + str(int(current_y)+offset.y))
+	if targetrow==null:return null
 	return targetrow.get_node_or_null("Tile_"+str(int(current_y)+offset.y)+"_"+str(int(tile.name.right(1))+offset.x))
 
 func gen():
