@@ -1,15 +1,17 @@
 extends Control
 
 func _process(_delta: float) -> void:
-	camera.position += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if focused:
+		camera.position += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
 var treenode = preload("res://tree_scripts_and_scenes/tree_1_node.tscn")
 var connector = preload("res://tree_scripts_and_scenes/connector.tscn")
-
+var focused = false
 var locations:Dictionary[Vector2,Global.rarity]
 @onready var nodes= $Nodes
 @onready var connects= $Connects
 @onready var camera = $Camera2D
+
 func locationsofrarity(rarity:Global.rarity)->Array[Vector2]:
 	var array:Array[Vector2]
 	for key in locations:

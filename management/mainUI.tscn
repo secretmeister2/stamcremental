@@ -24,12 +24,12 @@ grow_vertical = 2
 current_tab = 1
 tab_focus_mode = 0
 
-[node name="Skill Tree" type="Control" parent="TabContainer"]
+[node name="SkillTree" type="Control" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="SkillTree" type="SubViewportContainer" parent="TabContainer/Skill Tree"]
+[node name="SkillTree" type="SubViewportContainer" parent="TabContainer/SkillTree"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,15 +38,15 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="TabContainer/Skill Tree/SkillTree"]
+[node name="SubViewport" type="SubViewport" parent="TabContainer/SkillTree/SkillTree"]
 handle_input_locally = false
 size = Vector2i(2, 2)
 render_target_update_mode = 0
 
-[node name="TreeManager" parent="TabContainer/Skill Tree/SkillTree/SubViewport" instance=ExtResource("2_qk0v6")]
+[node name="TreeManager" parent="TabContainer/SkillTree/SkillTree/SubViewport" instance=ExtResource("2_qk0v6")]
 offset_top = 31.0
 
-[node name="Button" type="Button" parent="TabContainer/Skill Tree"]
+[node name="Button" type="Button" parent="TabContainer/SkillTree"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -69,4 +69,4 @@ layout_mode = 2
 metadata/_tab_index = 2
 
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="pressed" from="TabContainer/Skill Tree/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TabContainer/SkillTree/Button" to="." method="_on_button_pressed"]

@@ -1,5 +1,7 @@
 extends Control
 
+var focused = false
+
 var tilesize : int = 30
 ## The size of the play grid
 @export var grid_size: Vector2
@@ -54,7 +56,7 @@ func clear():
 
 ## Handle movement
 func _process(_delta: float) -> void:
-	if playing:
+	if playing && focused:
 		if Input.is_action_just_pressed("ui_down"):
 			move_player(get_relative(player.get_parent(), Vector2(0,1)))
 		if Input.is_action_just_pressed("ui_up"):
