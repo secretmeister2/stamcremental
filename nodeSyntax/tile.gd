@@ -1,0 +1,2 @@
+extends SyntaxElement
+class_name SyntaxTile

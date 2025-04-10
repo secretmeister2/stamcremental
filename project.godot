@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="incremental"
-run/main_scene="res://tree_scripts_and_scenes/tree_manager.tscn"
+config/tags=PackedStringArray("project")
+run/main_scene="uid://bd4dvx75veutu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [autoload]
 
-Global="*res://global.gd"
+Global="*res://management/global.gd"

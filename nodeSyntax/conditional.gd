@@ -1,0 +1,2 @@
+extends SyntaxElement
+var condition

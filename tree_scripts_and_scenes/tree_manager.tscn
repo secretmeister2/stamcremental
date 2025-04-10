@@ -3,16 +3,21 @@
 [ext_resource type="Script" uid="uid://1rd2acdp44ws" path="res://tree_scripts_and_scenes/tree_manager.gd" id="1_to3ld"]
 [ext_resource type="PackedScene" uid="uid://dr2log5tww6gm" path="res://tree_scripts_and_scenes/tree_1_node.tscn" id="2_terwb"]
 
-[node name="TreeManager" type="Node2D"]
+[node name="TreeManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_to3ld")
 
-[node name="Tree1Node" parent="." instance=ExtResource("2_terwb")]
-visible = false
-position = Vector2(1, 4)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1, 0)
+[node name="Connects" type="Node2D" parent="."]
 
 [node name="Nodes" type="Node2D" parent="."]
 
-[node name="Connects" type="Node2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-3, 3)
+
+[node name="Tree1Node" parent="." instance=ExtResource("2_terwb")]
+visible = false

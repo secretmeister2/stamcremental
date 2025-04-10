@@ -11,7 +11,7 @@ enum rarity{
 ## Why can ti see theese
 @export var huh:String
 ##Finds the nearest vector in the list to the given one
-func dist_to_nearest_node(place: Vector2, array:Array[Vector2]) -> int:
+func dist_to_nearest_node(place: Vector2, array:Array) -> int:
 	## Dynamic tracker of closest spot so far
 	var nearest= place.distance_to(Vector2(0,0))
 	for dist in array:

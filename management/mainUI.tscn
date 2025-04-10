@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd4dvx75veutu"]
+
+[ext_resource type="Script" uid="uid://biux6up5qj54r" path="res://management/main_ui.gd" id="1_v14sc"]
+[ext_resource type="PackedScene" uid="uid://cex30e65hhxk5" path="res://tree_scripts_and_scenes/tree_manager.tscn" id="2_qk0v6"]
+[ext_resource type="PackedScene" uid="uid://b10hnlt1tkaik" path="res://gameplay_scripts_and_scenes/gameplay.tscn" id="3_32xi3"]
+[ext_resource type="PackedScene" uid="uid://duxl6rru8b4ei" path="res://statSystem/stats.tscn" id="4_tlejk"]
+
+[node name="MainUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v14sc")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 1
+tab_focus_mode = 0
+
+[node name="Skill Tree" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="SkillTree" type="SubViewportContainer" parent="TabContainer/Skill Tree"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="TabContainer/Skill Tree/SkillTree"]
+handle_input_locally = false
+size = Vector2i(2, 2)
+render_target_update_mode = 0
+
+[node name="TreeManager" parent="TabContainer/Skill Tree/SkillTree/SubViewport" instance=ExtResource("2_qk0v6")]
+offset_top = 31.0
+
+[node name="Button" type="Button" parent="TabContainer/Skill Tree"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Recenter"
+
+[node name="Gameplay" parent="TabContainer" instance=ExtResource("3_32xi3")]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Stats" parent="TabContainer" instance=ExtResource("4_tlejk")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="pressed" from="TabContainer/Skill Tree/Button" to="." method="_on_button_pressed"]

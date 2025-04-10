@@ -30,3 +30,21 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_x0e6h")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(3, 10)
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 4.0
+offset_bottom = 11.0
+rotation = -2.35619
+color = Color(0.816873, 0.421753, 0.66826, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(3, 10)
+offset_left = 2.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = 9.0
+rotation = 2.35619
+color = Color(0.816873, 0.421753, 0.66826, 1)

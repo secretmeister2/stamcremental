@@ -23,7 +23,7 @@ var color = Color(545454)
 				if alpha:
 					alpha=85
 
-@export var rarity:Global.rarity
+@export var rarity:Global.rarity=-1
 #@export var preftags: Array[Global.basetags]
 var points=0
 ##@export var type:nodetype
@@ -36,8 +36,7 @@ var connected_from:Array[BaseTreeNode]
 var connected_to:Array[BaseTreeNode]
 var branches:Array[String]
 
-func roll(disorig:int):
-	
+func roll():
 	color=Global.raritycolors[rarity]
 	match rarity:
 		1: points = 20+distances["origin"]
@@ -52,9 +51,14 @@ func connect_check():
 	if conn_orig: 
 		for node in connected_to:
 			if not node.conn_orig:
-				node.conn_orig=true
-				node.connect_check()
+				var test = true
+				for fromnode in node.connected_from:
+					if not fromnode.conn_orig:
+						test = false
+				if test:
+					node.conn_orig=true
+					node.connect_check()
 
-func _init(rarity:int=-1, branch:String=""):
-	if rarity != -1: self.rarity=rarity
+func _init(newrarity=-1, branch:String=""):
+	if newrarity != -1: self.rarity=newrarity
 	if branch != "": self.branches.append(branch)
