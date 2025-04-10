@@ -2,6 +2,9 @@
 extends Resource
 ## A condition that will have a [param truth] that is [code]true[/code] or [code]false[/code] based on game or stat events.
 class_name Condition
+
+signal updated()
+
 ## The type of condition.[br][code]"PlayerOnTileOrDeco"[/code] if player must be atop a specified [Tile] or [Deco].[br][code]"PlayerNearTileorDeco"[/code] if the player has to be near a specified [Tile] or [Deco].[br][code]"StatCompare"[/code] if one [Stat] is to be compared to another or a constant.
 @export_enum("PlayerOnTileOrDeco", "PlayerNearTileorDeco", "StatCompare") 
 var type :String:
@@ -14,6 +17,8 @@ var comparator: String
 var constorstat : String
 ## The amount to compare against, if constant
 var amount: float
+## The stat to compare against if stat
+var compStat : StatDef
 var distance: int
 ## Whether the condition should check for [Tile]s or [Deco]s
 var tileOrDeco:
@@ -31,7 +36,7 @@ var truth = false
 func _get_property_list() -> Array:
 	var properties = []
 	match type:
-		"Stamina":
+		"StatCompare":
 			properties.append({
 				"name" : "comparator",
 				"type" : TYPE_STRING,

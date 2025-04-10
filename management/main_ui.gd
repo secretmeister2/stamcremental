@@ -7,8 +7,6 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 	if is_node_ready():
 		refocus()
 
-
-
 func _on_button_pressed() -> void:
 	skilltree.camera.position = Vector2(0,0)
 

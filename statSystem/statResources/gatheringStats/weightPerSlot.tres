@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Stat" load_steps=2 format=3 uid="uid://b4ewmcui3dhqu"]
+
+[ext_resource type="Script" uid="uid://bqjvxv3238vyo" path="res://statSystem/statDef.gd" id="1_ks7c7"]
+
+[resource]
+script = ExtResource("1_ks7c7")
+name = "weightPerSlot"
+default_value = 5.0
+dynamic = true
+metadata/_custom_type_script = ExtResource("1_ks7c7")
