@@ -6,8 +6,8 @@ class_name ItemStack
 @export var count:int
 
 func _init(type:ItemType,count:int=1):
-	type
-	count
+	self.type=type
+	self.count=count
 
 func _render(parent: Control):
 	self.type._render(self,parent)

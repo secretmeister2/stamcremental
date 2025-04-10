@@ -2,6 +2,10 @@ extends Resource
 class_name SaveData
 signal updated()
 
+#@export var playerData:PlayerData:
+#	set(value):
+#		playerData = value
+#		updated.emit()
 @export var modifiers:Array:
 	set(value):
 		modifiers = value

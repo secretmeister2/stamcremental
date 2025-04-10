@@ -1,4 +1,7 @@
 extends Node
+
+signal player_moved_to(place:ColorRect)
+
 enum rarity{
 	common=1,
 	uncommon=2,
@@ -6,10 +9,7 @@ enum rarity{
 	epic=4,
 	legend=5
 }
-## HElp
 @export var raritycolors: Array[Color]=[Color(0),Color(949494),Color(0.419, 0.495, 0.775),Color(0.671, 0.429, 0.895)]
-## Why can ti see theese
-@export var huh:String
 ##Finds the nearest vector in the list to the given one
 func dist_to_nearest_node(place: Vector2, array:Array) -> int:
 	## Dynamic tracker of closest spot so far

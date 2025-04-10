@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Stat" load_steps=2 format=3 uid="uid://bipmetrtrbp1a"]
+
+[ext_resource type="Script" uid="uid://bqjvxv3238vyo" path="res://statSystem/statDef.gd" id="1_mrctx"]
+
+[resource]
+script = ExtResource("1_mrctx")
+name = "MaxStamina"
+default_value = 10.0
+dynamic = false
+metadata/_custom_type_script = ExtResource("1_mrctx")

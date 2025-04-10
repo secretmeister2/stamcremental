@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Stat" load_steps=2 format=3 uid="uid://b5arv44i4dnnj"]
+
+[ext_resource type="Script" uid="uid://bqjvxv3238vyo" path="res://statSystem/statDef.gd" id="1_kn0t6"]
+
+[resource]
+script = ExtResource("1_kn0t6")
+name = "slotCount"
+default_value = 2.0
+dynamic = false
+metadata/_custom_type_script = ExtResource("1_kn0t6")
