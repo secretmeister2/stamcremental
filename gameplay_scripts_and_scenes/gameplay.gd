@@ -21,6 +21,8 @@ var stam: float=max_stam:
 @export var unlocked_base_tiles:Array[Tile]
 ## The list of decorations that are unlocked
 @export var unlocked_decos:Array[Deco]
+
+
 ## Maps the nodes to the data
 var tiles:Dictionary[ColorRect,Tile]
 ## Maps data to lists of nodes
