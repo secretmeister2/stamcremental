@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BasicAbility" load_steps=8 format=3 uid="uid://dvoaecgbrvqd5"]
+[gd_resource type="Resource" script_class="BasicAbility" load_steps=9 format=3 uid="uid://dvoaecgbrvqd5"]
 
-[ext_resource type="Script" path="res://gameplay_scripts_and_scenes/itemtype.gd" id="1_eub1h"]
+[ext_resource type="Script" uid="uid://0uq7plvmnqtu" path="res://gameplay_scripts_and_scenes/inventorySystem/itemtype.gd" id="1_dbhob"]
+[ext_resource type="Resource" uid="uid://cvf3gyryq205" path="res://gameplay_scripts_and_scenes/inventorySystem/items/rock.tres" id="2_bvhkk"]
 [ext_resource type="Script" uid="uid://ds1lye3gg7pea" path="res://tree_scripts_and_scenes/nodeTypes/ability.gd" id="2_tdjhi"]
 [ext_resource type="Script" uid="uid://y7fnxk45rnbh" path="res://statSystem/modifier.gd" id="3_dbhob"]
 [ext_resource type="Resource" uid="uid://2qknxi6rkqhh" path="res://statSystem/statResources/gatheringStats/gatherEff.tres" id="4_dbhob"]
@@ -21,5 +22,7 @@ metadata/_custom_type_script = ExtResource("3_dbhob")
 [resource]
 script = ExtResource("2_tdjhi")
 modifiers = Array[ExtResource("3_dbhob")]([SubResource("Resource_dbhob")])
-cost = Dictionary[ExtResource("1_eub1h"), int]({})
+cost = Dictionary[ExtResource("1_dbhob"), int]({
+ExtResource("2_bvhkk"): 2
+})
 metadata/_custom_type_script = ExtResource("2_tdjhi")

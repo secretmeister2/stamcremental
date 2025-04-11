@@ -18,6 +18,7 @@ class_name SyntaxRandNum
 ## The scalar for distribution (range 0-1)
 @export var dist_scalar:=0.8
 @export_tool_button("Generate Value") var genval = gennval
+
 func gennval():
 	var nums = []
 	for i in range(0,20):

@@ -46,7 +46,7 @@ render_target_update_mode = 0
 [node name="TreeManager" parent="TabContainer/SkillTree/SkillTree/SubViewport" instance=ExtResource("2_qk0v6")]
 offset_top = 31.0
 
-[node name="Button" type="Button" parent="TabContainer/SkillTree"]
+[node name="RecenterButton" type="Button" parent="TabContainer/SkillTree"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -69,4 +69,5 @@ layout_mode = 2
 metadata/_tab_index = 2
 
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="pressed" from="TabContainer/SkillTree/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_recenter_button_pressed"]
