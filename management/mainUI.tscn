@@ -69,5 +69,5 @@ layout_mode = 2
 metadata/_tab_index = 2
 
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_recenter_button_pressed"]
+[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_button_pressed"]
