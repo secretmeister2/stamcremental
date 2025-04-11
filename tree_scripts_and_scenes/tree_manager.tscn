@@ -18,6 +18,8 @@ script = ExtResource("1_to3ld")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 50.0
 
 [node name="Tree1Node" parent="." instance=ExtResource("2_terwb")]
 visible = false

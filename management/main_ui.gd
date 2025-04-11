@@ -8,8 +8,7 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 		refocus()
 
 func _on_recenter_button_pressed() -> void:
-	skilltree.camera.position = Vector2(0,0)
-	skilltree.camera.zoom = Vector2(1.0,1.0)
+	skilltree.recenter()
 
 func refocus():
 	if $TabContainer.get_tab_control($TabContainer.get_previous_tab()) == null: return

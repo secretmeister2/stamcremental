@@ -1,8 +1,14 @@
 extends Control
-
+var deszoom:float = 1.0
 func _process(_delta: float) -> void:
 	if focused:
 		camera.position += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var zoom:float = lerpf(camera.zoom.x,deszoom,0.5)
+		camera.zoom = Vector2(zoom,zoom)
+
+func recenter():
+	camera.position = Vector2(0,0)
+	deszoom = 1.0
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
@@ -12,9 +18,14 @@ func _input(event: InputEvent):
 	elif event is InputEventMouseButton:
 		var mouse = event as InputEventMouseButton
 		if mouse.button_index == MOUSE_BUTTON_WHEEL_UP:
-			camera.zoom += Vector2(0.1,0.1)*camera.zoom.x
+			deszoom += 0.1*deszoom
+			if deszoom ==  clamp(deszoom,0.1,10):
+				camera.position += (mouse.position-Vector2(get_window().size)/2)/Vector2(get_window().size)*camera.get_viewport_rect().size*0.1
 		elif mouse.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			camera.zoom -= Vector2(0.1,0.1)*camera.zoom.x
+			deszoom -= 0.1*deszoom
+			if deszoom ==  clamp(deszoom,0.1,10):
+				camera.position -= (mouse.position-Vector2(get_window().size)/2)/Vector2(get_window().size)*camera.get_viewport_rect().size*0.1
+		deszoom = clamp(deszoom,0.1,10)
 
 var treenode = preload("res://tree_scripts_and_scenes/tree_1_node.tscn")
 var connector = preload("res://tree_scripts_and_scenes/connector.tscn")
