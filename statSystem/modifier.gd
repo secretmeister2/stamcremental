@@ -5,6 +5,7 @@ class_name Modifier
 ##Array of conditions required for modifier to be active
 @export var conditions: Array[Condition]:
 	set(value):
+		conditions=value
 		for condition in conditions:
 			if not condition.updated.has_connections():
 				condition.updated.connect(cons_updated)

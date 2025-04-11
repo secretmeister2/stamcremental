@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_saxfp"]
 script = ExtResource("2_7cp7r")
-blob_size = 1
+blob_size = 1.7
 max_blobs = 1
 name = "Grass"
 col = Color(0, 0.494118, 0, 1)
@@ -17,7 +17,7 @@ metadata/_custom_type_script = "uid://dctuym202ux2t"
 
 [sub_resource type="Resource" id="Resource_7cp7r"]
 script = ExtResource("2_7cp7r")
-blob_size = 2
+blob_size = 2.2
 max_blobs = 3
 name = "Forest"
 col = Color(0, 0.196078, 0, 1)
@@ -26,8 +26,8 @@ metadata/_custom_type_script = "uid://dctuym202ux2t"
 
 [sub_resource type="Resource" id="Resource_mosag"]
 script = ExtResource("2_7cp7r")
-blob_size = 6
-max_blobs = 1
+blob_size = 3.1
+max_blobs = 2
 name = "Desert"
 col = Color(0.814304, 0.65187, 0.197291, 1)
 move_cost = 0.1
@@ -35,7 +35,7 @@ metadata/_custom_type_script = "uid://dctuym202ux2t"
 
 [sub_resource type="Resource" id="Resource_1ym3n"]
 script = ExtResource("2_7cp7r")
-blob_size = 9
+blob_size = 4.2
 max_blobs = 1
 name = "Ocean"
 col = Color(0.0222154, 0.257695, 1, 1)

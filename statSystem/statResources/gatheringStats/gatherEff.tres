@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatDef" load_steps=2 format=3 uid="uid://2qknxi6rkqhh"]
+
+[ext_resource type="Script" uid="uid://bqjvxv3238vyo" path="res://statSystem/statDef.gd" id="1_76hr1"]
+
+[resource]
+script = ExtResource("1_76hr1")
+name = "GatheringEfficiency"
+default_value = 1.0
+metadata/_custom_type_script = ExtResource("1_76hr1")
