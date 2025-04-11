@@ -20,11 +20,11 @@ func _input(event: InputEvent):
 		if mouse.button_index == MOUSE_BUTTON_WHEEL_UP:
 			deszoom += 0.1*deszoom
 			if deszoom ==  clamp(deszoom,0.1,10):
-				camera.position += (mouse.position-Vector2(get_window().size)/2)/Vector2(get_window().size)*camera.get_viewport_rect().size*0.1
+				camera.position += (mouse.position-Vector2(get_window().size)/2)/Vector2(get_window().size)*camera.get_viewport_rect().size*0.1/deszoom
 		elif mouse.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			deszoom -= 0.1*deszoom
 			if deszoom ==  clamp(deszoom,0.1,10):
-				camera.position -= (mouse.position-Vector2(get_window().size)/2)/Vector2(get_window().size)*camera.get_viewport_rect().size*0.1
+				camera.position -= (mouse.position-Vector2(get_window().size)/2)/Vector2(get_window().size)*camera.get_viewport_rect().size*0.1/deszoom
 		deszoom = clamp(deszoom,0.1,10)
 
 var treenode = preload("res://tree_scripts_and_scenes/tree_1_node.tscn")
