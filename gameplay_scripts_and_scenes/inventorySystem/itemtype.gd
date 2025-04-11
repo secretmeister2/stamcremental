@@ -1,5 +1,5 @@
 extends Resource
-## Why you no worky
+
 class_name ItemType
 
 @export var name : String

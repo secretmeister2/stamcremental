@@ -1,7 +1,16 @@
 extends Node
 
 signal player_moved_to(place:ColorRect)
+## Global reference to the save data
+var data:SaveData
 
+
+
+
+
+
+
+# Vars used for tree
 enum rarity{
 	common=1,
 	uncommon=2,
@@ -10,6 +19,8 @@ enum rarity{
 	legend=5
 }
 @export var raritycolors: Array[Color]=[Color(0),Color(949494),Color(0.419, 0.495, 0.775),Color(0.671, 0.429, 0.895)]
+
+# Functions for use in tree management
 ##Finds the nearest vector in the list to the given one
 func dist_to_nearest_node(place: Vector2, array:Array) -> int:
 	## Dynamic tracker of closest spot so far

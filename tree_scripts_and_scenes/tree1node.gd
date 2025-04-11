@@ -3,7 +3,9 @@ class_name BaseTreeNode
 
 var neighbours:Array[BaseTreeNode]
 
-var alpha = 0
+var alpha = 0:
+	set(value):
+		alpha=value
 var color = Color(545454)
 @export_enum("locked", "available", "bought") var status:String:
 	set(value):
@@ -31,7 +33,7 @@ var connections:Array[Connector]
 var connected_from:Array[BaseTreeNode]
 var connected_to:Array[BaseTreeNode]
 var branches:Array[String]
-var ability = TreeNodeType
+var ability : TreeNodeType
 
 func roll():
 	color=Global.raritycolors[rarity]
@@ -61,4 +63,17 @@ func _init(newrarity=-1, branch:String=""):
 	if branch != "": self.branches.append(branch)
 
 func trybuy():
-	pass
+	if status!="available": return
+	var test = true
+	for item in ability.cost.keys():
+		if not Inventory.has_items(item, ability.cost[item]):
+			test = false
+	if test == true:
+		buy()
+
+func buy():
+	status = "bought"
+	for item in  ability.cost.keys():
+		Inventory.remove_items(item, ability.cost[item])
+	ability.bought()
+		
