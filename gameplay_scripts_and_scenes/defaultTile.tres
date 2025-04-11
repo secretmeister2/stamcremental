@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Tile" load_steps=2 format=3 uid="uid://veygw70sg6j8"]
+
+[ext_resource type="Script" uid="uid://dctuym202ux2t" path="res://gameplay_scripts_and_scenes/tile.gd" id="1_6g1bn"]
+
+[resource]
+script = ExtResource("1_6g1bn")
+blob_size = 1.0
+max_blobs = 1
+name = "Plain"
+col = Color(0.31038, 0.507901, 0.302107, 1)
+move_cost = 0.1
+metadata/_custom_type_script = ExtResource("1_6g1bn")

@@ -2,7 +2,9 @@ extends Resource
 
 class_name ItemType
 
-const weight:float = 0
+@export var name : String
+@export var weight:float = 0
+@export var tags : Array[String]
 
 func _render(stack: ItemStack,parent: Control):
 	pass

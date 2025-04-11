@@ -1,10 +1,6 @@
 extends Resource
 class_name BaseTreeNode
-enum nodetype{
-	ability,
-	passive,
-	stat
-}
+
 var neighbours:Array[BaseTreeNode]
 
 var alpha = 0
@@ -35,6 +31,7 @@ var connections:Array[Connector]
 var connected_from:Array[BaseTreeNode]
 var connected_to:Array[BaseTreeNode]
 var branches:Array[String]
+var ability = TreeNodeType
 
 func roll():
 	color=Global.raritycolors[rarity]
@@ -62,3 +59,6 @@ func connect_check():
 func _init(newrarity=-1, branch:String=""):
 	if newrarity != -1: self.rarity=newrarity
 	if branch != "": self.branches.append(branch)
+
+func trybuy():
+	pass

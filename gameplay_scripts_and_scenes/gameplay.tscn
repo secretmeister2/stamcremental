@@ -8,61 +8,61 @@
 
 [sub_resource type="Resource" id="Resource_saxfp"]
 script = ExtResource("2_7cp7r")
-name = "Grass"
-col = Color(0, 0.494118, 0, 1)
 blob_size = 1
 max_blobs = 1
+name = "Grass"
+col = Color(0, 0.494118, 0, 1)
 move_cost = 0.1
 metadata/_custom_type_script = "uid://dctuym202ux2t"
 
 [sub_resource type="Resource" id="Resource_7cp7r"]
 script = ExtResource("2_7cp7r")
-name = "Forest"
-col = Color(0, 0.196078, 0, 1)
 blob_size = 2
 max_blobs = 3
+name = "Forest"
+col = Color(0, 0.196078, 0, 1)
 move_cost = 0.2
 metadata/_custom_type_script = "uid://dctuym202ux2t"
 
 [sub_resource type="Resource" id="Resource_mosag"]
 script = ExtResource("2_7cp7r")
-name = "Desert"
-col = Color(0.814304, 0.65187, 0.197291, 1)
 blob_size = 6
 max_blobs = 1
+name = "Desert"
+col = Color(0.814304, 0.65187, 0.197291, 1)
 move_cost = 0.1
 metadata/_custom_type_script = "uid://dctuym202ux2t"
 
 [sub_resource type="Resource" id="Resource_1ym3n"]
 script = ExtResource("2_7cp7r")
-name = "Ocean"
-col = Color(0.0222154, 0.257695, 1, 1)
 blob_size = 9
 max_blobs = 1
+name = "Ocean"
+col = Color(0.0222154, 0.257695, 1, 1)
 move_cost = 1.0
 metadata/_custom_type_script = "uid://dctuym202ux2t"
 
 [sub_resource type="Resource" id="Resource_mbman"]
 script = ExtResource("3_saxfp")
-name = "Tree"
-col = Color(0, 0.517647, 0, 1)
 size = 0.5
 place_chance = 0.2
 tiles = Array[String](["Forest"])
 cons = Array[ExtResource("4_mosag")]([])
 shared = Array[ExtResource("3_saxfp")]([])
+name = "Tree"
+col = Color(0, 0.517647, 0, 1)
 move_cost = 0.1
 metadata/_custom_type_script = "uid://kxcx3qwn4ebf"
 
 [sub_resource type="Resource" id="Resource_5p4kp"]
 script = ExtResource("3_saxfp")
-name = "Stone"
-col = Color(0.385493, 0.385492, 0.385492, 1)
 size = 0.3
 place_chance = 0.1
 tiles = Array[String](["Forest", "Desert"])
 cons = Array[ExtResource("4_mosag")]([])
 shared = Array[ExtResource("3_saxfp")]([])
+name = "Stone"
+col = Color(0.385493, 0.385492, 0.385492, 1)
 move_cost = 0.1
 metadata/_custom_type_script = "uid://kxcx3qwn4ebf"
 
@@ -75,13 +75,13 @@ metadata/_custom_type_script = "uid://dkcuqx3pe5a7b"
 
 [sub_resource type="Resource" id="Resource_3k5v4"]
 script = ExtResource("3_saxfp")
-name = "Ocean_Rock"
-col = Color(0.359069, 0.359069, 0.359069, 1)
 size = 0.7
 place_chance = 0.3
 tiles = Array[String](["Ocean"])
 cons = Array[ExtResource("4_mosag")]([SubResource("Resource_eanoa")])
 shared = Array[ExtResource("3_saxfp")]([])
+name = "Ocean_Rock"
+col = Color(0.359069, 0.359069, 0.359069, 1)
 move_cost = 0.1
 metadata/_custom_type_script = "uid://kxcx3qwn4ebf"
 

@@ -31,6 +31,7 @@ func construct_tree(tree:SkillTree):
 		var node=treenode.instantiate()
 		node.global_position=place
 		node.set_meta("node",nodedata)
+		node.node=nodedata
 		node.get_node("RarityColor").color = Global.raritycolors[nodedata.rarity]
 		nodes.add_child(node)
 	for node in nodes.get_children():

@@ -21,7 +21,7 @@ class_name Modifier
 		notify_property_list_changed()
 @export_group("Scalar")
 ## [Stat] that it scales off of
-var dependentStat:Stat
+var dependentStat:StatDef
 ## The step that this stat should increase in
 var step:float
 ## The amount to multiply the dependent [Stat] by before adding to this [Stat].

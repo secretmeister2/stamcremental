@@ -69,7 +69,6 @@ func _process(_delta: float) -> void:
 			move_player(get_relative(player.get_parent(), Vector2(-1,0)))
 		if Input.is_action_just_pressed("ui_right"):
 			move_player(get_relative(player.get_parent(), Vector2(1,0)))
-
 ## Move the player
 func move_player(place:ColorRect):
 	if place:
