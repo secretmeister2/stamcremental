@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TileOrDecoUnlock" load_steps=5 format=3 uid="uid://ptybhjq4lofr"]
 
-[ext_resource type="Script" path="res://gameplay_scripts_and_scenes/itemtype.gd" id="1_6mjyg"]
+[ext_resource type="Script" uid="uid://0uq7plvmnqtu" path="res://gameplay_scripts_and_scenes/inventorySystem/itemtype.gd" id="1_irl14"]
 [ext_resource type="Script" uid="uid://1fbslpxmgvvc" path="res://tree_scripts_and_scenes/nodeTypes/new_tile_or_deco.gd" id="2_irl14"]
 [ext_resource type="Script" uid="uid://dctuym202ux2t" path="res://gameplay_scripts_and_scenes/tile.gd" id="3_irl14"]
 
@@ -16,5 +16,5 @@ metadata/_custom_type_script = ExtResource("3_irl14")
 [resource]
 script = ExtResource("2_irl14")
 new_tile_or_deco = SubResource("Resource_txelh")
-cost = Dictionary[ExtResource("1_6mjyg"), int]({})
+cost = Dictionary[ExtResource("1_irl14"), int]({})
 metadata/_custom_type_script = ExtResource("2_irl14")
