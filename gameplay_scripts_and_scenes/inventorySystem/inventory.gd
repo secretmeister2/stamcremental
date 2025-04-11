@@ -1,4 +1,4 @@
-extends Resource
+extends Script
 
 class_name Inventory
 signal updated()
@@ -36,22 +36,13 @@ func set_slot(slot:int,stack:ItemStack) -> bool:
 	else:
 		return false
 
-## transfers an item from another into this inventory
-func transfer_item(fromslot:int, toslot:int , frominv:Inventory) -> bool:
-	return set_slot(toslot,frominv.pop_item(fromslot))
-
-## transfers an item to another inventory
-func transfer_item_to(fromslot:int, toslot:int , frominv:Inventory) -> bool:
-	return frominv.set_slot(toslot,pop_item(fromslot))
-
-## transfers an item from another into this inventory but uses add_item rather than set_item
-func transfer_item_fast(fromslot:int, frominv:Inventory) -> bool:
-	return add_item(frominv.pop_item(fromslot))
-
-## transfers an item to another inventory but uses add_item rather than set_item
-func transfer_item_fast_to(fromslot:int, frominv:Inventory) -> bool:
-	return frominv.add_item(pop_item(fromslot))
-
+## checks if the player has a certain number of items of a type in their inventory
+func has_items(type:ItemType,count:int=1) -> bool:
+	var accum:int = 0
+	for v in items.values():
+		if v.type == type:
+			accum += v.count
+	return accum >= count
 
 ## removes the stack at the given slot from the inventory and returns it
 func pop_item(slot:int) -> ItemStack:
