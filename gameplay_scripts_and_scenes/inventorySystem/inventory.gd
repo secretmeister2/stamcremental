@@ -1,5 +1,6 @@
-extends Node
+extends Script
 
+class_name Inventory
 signal updated()
 
 @export var size:int:
@@ -43,12 +44,20 @@ func has_items(type:ItemType,count:int=1) -> bool:
 			accum += v.count
 	return accum >= count
 
+## checks if the player has a certain number of items of a type in their inventory and if they do remove them
 func remove_items(type:ItemType,count:int=1) -> bool:
 	if has_items(type,count):
 		for v in items.values():
 			if v.type == type:
 				var itmcount = v.count
-				count -= v.sub()
+				count -= v.sub(mini(v.count,count))
+				if v.count == 0:
+					items.erase(items.find_key(v))
+				else:
+					items.set(items.find_key(v),v)
+				count -= itmcount
+		return true
+	return false
 
 ## removes the stack at the given slot from the inventory and returns it
 func pop_item(slot:int) -> ItemStack:
