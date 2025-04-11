@@ -5,8 +5,6 @@ var focused = false
 var tilesize : int = 30
 ## The size of the play grid
 @export var grid_size: Vector2
-## The playerdata for the player
-@export var player_data:PlayerData = PlayerData.new();
 ## The maximum stamina in current scope
 var max_stam: float=10
 ## Counter of current stamina
