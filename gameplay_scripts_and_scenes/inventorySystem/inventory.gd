@@ -44,6 +44,13 @@ func has_items(type:ItemType,count:int=1) -> bool:
 			accum += v.count
 	return accum >= count
 
+func remove_items(type:ItemType,count:int=1) -> bool:
+	if has_items(type,count):
+		for v in items.values():
+			if v.type == type:
+				var itmcount = v.count
+				count -= v.sub()
+
 ## removes the stack at the given slot from the inventory and returns it
 func pop_item(slot:int) -> ItemStack:
 	var stack: ItemStack = items.get(slot)
