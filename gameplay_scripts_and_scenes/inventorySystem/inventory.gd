@@ -1,6 +1,5 @@
-extends Script
+extends Node
 
-class_name Inventory
 signal updated()
 
 @export var size:int:

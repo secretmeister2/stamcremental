@@ -18,3 +18,4 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 
 Global="*res://management/global.gd"
+Inventory="*res://gameplay_scripts_and_scenes/inventorySystem/inventory.gd"
