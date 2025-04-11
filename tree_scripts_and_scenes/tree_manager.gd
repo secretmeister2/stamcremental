@@ -4,6 +4,18 @@ func _process(_delta: float) -> void:
 	if focused:
 		camera.position += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
+func _input(event: InputEvent):
+	if event is InputEventMouseMotion:
+		var mouse = event as InputEventMouseMotion
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+			camera.position -= mouse.relative/camera.zoom.x
+	elif event is InputEventMouseButton:
+		var mouse = event as InputEventMouseButton
+		if mouse.button_index == MOUSE_BUTTON_WHEEL_UP:
+			camera.zoom += Vector2(0.1,0.1)*camera.zoom.x
+		elif mouse.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			camera.zoom -= Vector2(0.1,0.1)*camera.zoom.x
+
 var treenode = preload("res://tree_scripts_and_scenes/tree_1_node.tscn")
 var connector = preload("res://tree_scripts_and_scenes/connector.tscn")
 var focused = false

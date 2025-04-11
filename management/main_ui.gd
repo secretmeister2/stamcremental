@@ -9,12 +9,7 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 
 func _on_button_pressed() -> void:
 	skilltree.camera.position = Vector2(0,0)
-
-func _input(event: InputEvent):
-	if event is InputEventMouseMotion:
-		var mouse = event as InputEventMouseMotion
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
-			skilltree.camera.position -= mouse.relative
+	skilltree.camera.zoom = Vector2(1.0,1.0)
 
 func refocus():
 	if $TabContainer.get_tab_control($TabContainer.get_previous_tab()) == null: return
