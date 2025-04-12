@@ -2,20 +2,14 @@ extends Node
 
 signal updated()
 
-@export var size:int:
+@export var size:int = 1:
 	set(value):
 		size = value
 		updated.emit()
-@export var items:Dictionary[int,ItemStack]:
+@export var items:Dictionary[int,ItemStack] = {}:
 	set(value):
 		items = value
 		updated.emit()
-
-
-## size:int is the size of the inventory being created
-func _init(size:int):
-	self.size = size
-	self.items = {}
 
 ## places an item in the first avaliable slot
 func add_item(stack:ItemStack) -> bool:
