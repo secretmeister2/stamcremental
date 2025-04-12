@@ -1,12 +1,28 @@
-[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://cvf3gyryq205"]
+[gd_resource type="Resource" script_class="ItemType" load_steps=6 format=3 uid="uid://cvf3gyryq205"]
 
 [ext_resource type="Script" uid="uid://0uq7plvmnqtu" path="res://gameplay_scripts_and_scenes/inventorySystem/itemtype.gd" id="1_5vuho"]
 [ext_resource type="Script" uid="uid://bhx3jwv4ijj3g" path="res://gameplay_scripts_and_scenes/inventorySystem/render_def.gd" id="1_pecbx"]
+[ext_resource type="Script" uid="uid://cn6ugpsbovnnt" path="res://gameplay_scripts_and_scenes/inventorySystem/shape_def.gd" id="2_m76al"]
+
+[sub_resource type="Resource" id="Resource_rx0ac"]
+script = ExtResource("2_m76al")
+shape = PackedVector2Array(-11, -102, -120, -62, -152, 37, -80, 119, 18, 122, 64, 73, 52, -2, 53, -71)
+color = Color(0.454524, 0.454524, 0.454524, 1)
+offset = Vector2(0, 0)
+rotation = 3.795
+metadata/_custom_type_script = "uid://cn6ugpsbovnnt"
+
+[sub_resource type="Resource" id="Resource_1hvm7"]
+script = ExtResource("1_pecbx")
+shapes = Array[ExtResource("2_m76al")]([SubResource("Resource_rx0ac")])
+metadata/_custom_type_script = "uid://bhx3jwv4ijj3g"
 
 [resource]
 script = ExtResource("1_5vuho")
 name = "Rock"
 weight = 0.2
 tags = Array[String](["Primitive", "Stone"])
-renders = Dictionary[int, ExtResource("1_pecbx")]({})
+renders = Dictionary[int, ExtResource("1_pecbx")]({
+0: SubResource("Resource_1hvm7")
+})
 metadata/_custom_type_script = "uid://0uq7plvmnqtu"

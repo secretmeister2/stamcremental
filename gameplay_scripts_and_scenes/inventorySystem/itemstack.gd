@@ -18,7 +18,8 @@ func _init(type:ItemType=ItemType.new(),count:int=1):
 	self.count = count
 
 func _render(parent: CanvasItem):
-	self.type._render(self,parent)
+	if self.type:
+		self.type._render(self,parent)
 
 ## add n to the stack size
 func add(n:int=1):
