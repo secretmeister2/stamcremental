@@ -2,8 +2,8 @@ extends Control
 var deszoom:float = 1.0
 func _process(_delta: float) -> void:
 	if focused:
-		camera.position += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-		var zoom:float = lerpf(camera.zoom.x,deszoom,0.5)
+		#camera.position += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var zoom:float = lerpf(camera.zoom.x,deszoom,0.2)
 		camera.zoom = Vector2(zoom,zoom)
 
 func recenter():
