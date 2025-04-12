@@ -12,7 +12,7 @@ func recenter():
 	camera.position = Vector2(0,0)
 	deszoom = 1.0
 
-func _input(event: InputEvent):
+func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		var mouse = event as InputEventMouseMotion
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
@@ -84,3 +84,7 @@ func connectnodes(node1:BaseTreeNode, node2:BaseTreeNode):
 		node1.connections.append(connection)
 		node2.connected_to.append(node1)
 		node1.connected_to.append(node2)
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print("input")

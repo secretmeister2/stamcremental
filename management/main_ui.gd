@@ -1,7 +1,7 @@
 extends Control
-class_name UI_Controller
+
 @onready var gameplay = $TabContainer/Gameplay
-@onready var skilltree = $TabContainer/SkillTree/SkillTree/SubViewport/TreeManager
+@onready var skilltree = $TabContainer/SkillTree/SkillTreeViewport/SubViewport/TreeManager
 
 func _on_tab_container_tab_changed(tab: int) -> void:
 	if is_node_ready():
@@ -20,3 +20,7 @@ func refocus():
 		skilltree.focused=false
 	else:
 		$TabContainer.get_tab_control($TabContainer.get_previous_tab()).focused = false
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print("input")
