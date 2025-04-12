@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_fd3mu")
-name = ""
-weight = 0.0
-tags = Array[String]([])
+name = "Stick"
+weight = 0.5
+tags = Array[String](["Primitive", "Wooden"])
 metadata/_custom_type_script = ExtResource("1_fd3mu")

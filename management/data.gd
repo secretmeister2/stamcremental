@@ -1,6 +1,6 @@
 extends Resource
 class_name SaveData
-signal updated()
+signal updated(thing)
 
 #@export var playerData:PlayerData:
 #	set(value):

@@ -137,6 +137,7 @@ func gen_tile_type(type:Tile):
 							j+=1.0
 							break
 					j+=0.1
+					if j >= 100: break
 
 ## Master function to generate grid
 func gen():
@@ -236,3 +237,7 @@ func _on_button_pressed() -> void:
 	clear()
 	gen()
 	start()
+
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print("inputt")

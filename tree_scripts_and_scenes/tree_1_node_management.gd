@@ -1,14 +1,15 @@
 extends Node2D
 var hovered = false
 var node : BaseTreeNode
-func _on_area_2d_mouse_entered() -> void:
+@onready var popup = $PopupPanel
+
+func _on_mouse_entered() -> void:
 	hovered=true
+	popup.popup()
 
-
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action("ui_accept"):
-		node.trybuy()
-
-
-func _on_area_2d_mouse_exited() -> void:
+func _on_mouse_exited() -> void:
 	hovered=false
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action("click"):
+		node.trybuy()

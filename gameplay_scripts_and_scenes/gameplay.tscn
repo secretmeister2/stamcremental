@@ -107,13 +107,16 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Stamina:"
 
 [node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Start Anew"
 
 [node name="RowContainer" type="VBoxContainer" parent="VBoxContainer"]
@@ -122,5 +125,6 @@ layout_mode = 2
 [node name="Player" parent="." instance=ExtResource("5_1ym3n")]
 layout_mode = 1
 scale = Vector2(0.8, 0.8)
+mouse_filter = 1
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 current_tab = 1
 tab_focus_mode = 0
 
@@ -29,22 +30,25 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="SkillTree" type="SubViewportContainer" parent="TabContainer/SkillTree"]
+[node name="SkillTreeViewport" type="SubViewportContainer" parent="TabContainer/SkillTree"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="TabContainer/SkillTree/SkillTree"]
+[node name="SubViewport" type="SubViewport" parent="TabContainer/SkillTree/SkillTreeViewport"]
 handle_input_locally = false
+gui_embed_subwindows = true
 size = Vector2i(2, 2)
 render_target_update_mode = 0
 
-[node name="TreeManager" parent="TabContainer/SkillTree/SkillTree/SubViewport" instance=ExtResource("2_qk0v6")]
+[node name="TreeManager" parent="TabContainer/SkillTree/SkillTreeViewport/SubViewport" instance=ExtResource("2_qk0v6")]
 offset_top = 31.0
+mouse_filter = 0
 
 [node name="RecenterButton" type="Button" parent="TabContainer/SkillTree"]
 layout_mode = 1
