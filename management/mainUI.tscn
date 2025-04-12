@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd4dvx75veutu"]
+[gd_scene load_steps=9 format=3 uid="uid://bd4dvx75veutu"]
 
 [ext_resource type="Script" uid="uid://biux6up5qj54r" path="res://management/main_ui.gd" id="1_v14sc"]
 [ext_resource type="PackedScene" uid="uid://cex30e65hhxk5" path="res://tree_scripts_and_scenes/tree_manager.tscn" id="2_qk0v6"]
 [ext_resource type="PackedScene" uid="uid://b10hnlt1tkaik" path="res://gameplay_scripts_and_scenes/gameplay.tscn" id="3_32xi3"]
 [ext_resource type="PackedScene" uid="uid://duxl6rru8b4ei" path="res://statSystem/stats.tscn" id="4_tlejk"]
+[ext_resource type="Script" uid="uid://bnta2wjh0y6g5" path="res://gameplay_scripts_and_scenes/inventorySystem/item_renderer.gd" id="5_sowne"]
+[ext_resource type="Script" uid="uid://jig240a738kq" path="res://gameplay_scripts_and_scenes/inventorySystem/itemstack.gd" id="6_s0q21"]
+[ext_resource type="Resource" uid="uid://cvf3gyryq205" path="res://gameplay_scripts_and_scenes/inventorySystem/items/rock.tres" id="7_tlejk"]
+
+[sub_resource type="Resource" id="Resource_32xi3"]
+script = ExtResource("6_s0q21")
+type = ExtResource("7_tlejk")
+count = 1
+metadata/_custom_type_script = "uid://jig240a738kq"
 
 [node name="MainUi" type="Control"]
 layout_mode = 3
@@ -68,6 +77,14 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 855
+position = Vector2(287, 299)
+script = ExtResource("5_sowne")
+stack = SubResource("Resource_32xi3")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_recenter_button_pressed"]
+[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_button_pressed"]

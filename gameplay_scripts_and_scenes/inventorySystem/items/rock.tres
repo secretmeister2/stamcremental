@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="ItemType" load_steps=2 format=3 uid="uid://cvf3gyryq205"]
+[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://cvf3gyryq205"]
 
 [ext_resource type="Script" uid="uid://0uq7plvmnqtu" path="res://gameplay_scripts_and_scenes/inventorySystem/itemtype.gd" id="1_5vuho"]
+[ext_resource type="Script" uid="uid://bhx3jwv4ijj3g" path="res://gameplay_scripts_and_scenes/inventorySystem/render_def.gd" id="1_pecbx"]
 
 [resource]
 script = ExtResource("1_5vuho")
 name = "Rock"
 weight = 0.2
 tags = Array[String](["Primitive", "Stone"])
-metadata/_custom_type_script = ExtResource("1_5vuho")
+renders = Dictionary[int, ExtResource("1_pecbx")]({})
+metadata/_custom_type_script = "uid://0uq7plvmnqtu"

@@ -1,3 +1,4 @@
+@tool
 extends Resource
 
 class_name ItemStack
@@ -12,11 +13,11 @@ signal updated()
 		count = value
 		updated.emit()
 
-func _init(type:ItemType,count:int=1):
+func _init(type:ItemType=ItemType.new(),count:int=1):
 	self.type = type
 	self.count = count
 
-func _render(parent: Control):
+func _render(parent: CanvasItem):
 	self.type._render(self,parent)
 
 ## add n to the stack size
