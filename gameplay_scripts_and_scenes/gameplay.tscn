@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b10hnlt1tkaik"]
+[gd_scene load_steps=15 format=3 uid="uid://b10hnlt1tkaik"]
 
 [ext_resource type="Script" uid="uid://bqvhmfahfjx4j" path="res://gameplay_scripts_and_scenes/gameplay.gd" id="1_n4psk"]
 [ext_resource type="Script" uid="uid://dctuym202ux2t" path="res://gameplay_scripts_and_scenes/tile.gd" id="2_7cp7r"]
 [ext_resource type="Script" uid="uid://kxcx3qwn4ebf" path="res://gameplay_scripts_and_scenes/deco.gd" id="3_saxfp"]
 [ext_resource type="Script" uid="uid://dkcuqx3pe5a7b" path="res://gameplay_scripts_and_scenes/tile_place_con.gd" id="4_mosag"]
 [ext_resource type="PackedScene" uid="uid://5d7wuewwa0o1" path="res://gameplay_scripts_and_scenes/player.tscn" id="5_1ym3n"]
+[ext_resource type="PackedScene" uid="uid://mw8q1ojei5yc" path="res://gameplay_scripts_and_scenes/inventorySystem/inventory.tscn" id="6_mbman"]
 
 [sub_resource type="Resource" id="Resource_saxfp"]
 script = ExtResource("2_7cp7r")
@@ -115,6 +116,7 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+z_index = 1
 layout_mode = 2
 mouse_filter = 1
 text = "Start Anew"
@@ -126,5 +128,14 @@ layout_mode = 2
 layout_mode = 1
 scale = Vector2(0.8, 0.8)
 mouse_filter = 1
+
+[node name="Inventory" parent="." instance=ExtResource("6_mbman")]
+layout_mode = 1
+offset_left = -5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 5.0
+mouse_filter = 2
+slot_bg_color = Color(0.347817, 0.347817, 0.347817, 1)
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

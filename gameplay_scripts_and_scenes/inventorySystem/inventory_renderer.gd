@@ -2,12 +2,6 @@ extends Control
 
 @export var slot_bg_color: Color
 
-func _init() -> void:
-	Inventory.size = 10
-	Inventory.set_slot(0,load("res://gameplay_scripts_and_scenes/inventorySystem/items/rock.tres").create_stack(2))
-	Inventory.set_slot(1,load("res://gameplay_scripts_and_scenes/inventorySystem/items/stick.tres").create_stack(3))
-	Inventory.set_slot(5,load("res://gameplay_scripts_and_scenes/inventorySystem/items/rock.tres").create_stack(5))
-
 func _process(delta: float) -> void:
 	for i in $layout.get_children():
 		i.queue_free()
