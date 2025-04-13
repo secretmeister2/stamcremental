@@ -26,13 +26,16 @@ func add_item(stack:ItemStack) -> bool:
 	for i in range(0,size):
 		if !items.has(i):
 			items.set(i,stack.duplicate())
+			updated.emit()
 			return true
 		elif items.get(i).type == stack.type:
 			items.get(i).count += stack.count
+			updated.emit()
 			return true
 	return false
 
 func clear():
+	updated.emit()
 	items={}
 
 ## sets a slot to the given ItemStack
@@ -41,6 +44,7 @@ func set_slot(slot:int,stack:ItemStack) -> bool:
 		return false
 	if slot < size:
 		items.set(slot,stack)
+		updated.emit()
 		return true
 	else:
 		return false
@@ -65,6 +69,7 @@ func remove_items(type:ItemType,count:int=1) -> bool:
 				else:
 					items.set(items.find_key(v),v)
 				count -= itmcount
+		updated.emit()
 		return true
 	return false
 
@@ -72,6 +77,7 @@ func remove_items(type:ItemType,count:int=1) -> bool:
 func pop_item(slot:int) -> ItemStack:
 	var stack: ItemStack = items.get(slot)
 	items.erase(slot)
+	updated.emit()
 	return stack
 
 ## just returns the stack at the slot

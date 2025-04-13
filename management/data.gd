@@ -22,6 +22,10 @@ signal updated(thing)
 	set(value):
 		tree2 = value
 		updated.emit()
+@export var selected_slot:int:
+	set(value):
+		selected_slot = value
+		updated.emit()
 
 @export var branches : Array[Branch]
 

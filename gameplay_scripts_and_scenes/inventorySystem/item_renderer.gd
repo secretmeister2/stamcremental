@@ -1,16 +1,15 @@
-@tool
-extends CanvasItem
+extends Button
 
-@export var stack:ItemStack
+@export var slot:int
 
 func _ready():
-	if Engine.is_editor_hint():
-		set_process(true)
+	Inventory.updated.connect(queue_redraw.bind())
+	queue_redraw()
 
 func _draw() -> void:
-	#draw_circle(Vector2.ZERO,5,Color.AQUA,true)
-	if stack:
-		stack._render(self)
+	if Inventory.peek_item(slot):
+		Inventory.peek_item(slot)._render(self)
 
-func _process(delta: float) -> void:
-	queue_redraw()
+func _pressed() -> void:
+	Global.data.selected_slot = slot
+	Inventory.updated.emit()

@@ -10,7 +10,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_35oas")
-slot_bg_color = Color(0.172833, 0.172833, 0.172833, 1)
 
 [node name="layout" type="GridContainer" parent="."]
 custom_minimum_size = Vector2(60, 60)
