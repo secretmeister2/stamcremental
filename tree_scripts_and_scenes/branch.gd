@@ -1,7 +1,7 @@
 extends Resource
 ## A branch on the skill tree
 class_name Branch
-## 
-var name : String
-##
-var abilityTypes : Array[TreeNodeType]
+##  The name of the branch
+@export var name : String
+## The ability types that exist in this branch
+@export var abilityTypes : Array[TreeNodeType]

@@ -39,8 +39,16 @@ var gameready = false
 @onready var stam_label = $VBoxContainer/HBoxContainer/Label2
 @onready var row_container = $VBoxContainer/RowContainer
 
+
+
 ## Start the game
 func start():
+	var deco = true
+	var tile:ColorRect
+	while deco:
+		tile = tile_dict.get(unlocked_base_tiles[0]).pick_random()
+		deco=tile.get_child(0)
+		print(deco)
 	move_player(tile_dict.get(unlocked_base_tiles[0]).pick_random())
 	stam=max_stam
 	playing=true
@@ -57,7 +65,7 @@ func clear():
 	gameready = false
 
 ## Handle movement
-func _process(_delta: float) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if playing && focused:
 		if Input.is_action_just_pressed("ui_down"):
 			move_player(get_relative(player.get_parent(), Vector2(0,1)))
@@ -96,11 +104,11 @@ func get_relative(tile:ColorRect, offset:Vector2)->ColorRect:
 
 ## Generate the base layer from the first entry in unlocked base tiles
 func gen_base_tiles():
-	for i in range(1,grid_size[0]):
+	for i in range(1,grid_size.y+1):
 		var row = HBoxContainer.new()
 		row.name = "Row_"+str(i)
 		row_container.add_child(row)
-		for j in range(1,grid_size[1]):
+		for j in range(1,grid_size.x+1):
 			var rect = ColorRect.new()
 			rect.name = "Tile_"+str(i)+"_"+str(j)
 			rect.size_flags_horizontal = Control.SIZE_EXPAND
@@ -145,6 +153,9 @@ func gen_tile_type(type:Tile):
 
 ## Master function to generate grid
 func gen():
+	unlocked_base_tiles=Global.data.unlocked_tiles
+	unlocked_decos=Global.data.unlocked_decos
+	grid_size=Vector2(Global.data.get_stat_or_null("GridSizeX").final_val,Global.data.get_stat_or_null("GridSizeY").final_val)
 	gen_base_tiles()
 	var base_tiles = unlocked_base_tiles.duplicate()
 	base_tiles.erase(unlocked_base_tiles[0])
@@ -180,15 +191,18 @@ func common_fix():
 ## Find and place a decoration
 func place_decoration(decoration:Deco):
 		for tiletype in decoration.tiles:
-			var arraay = tile_dict.get(name_to_tile[tiletype])
-			if arraay != null && arraay != []:
-				var test = true
-				for tile in arraay:
-					for child in tile.get_children(): 
-						if child not in decoration.shared: 
-							test = false
-					if randf()<=decoration.place_chance && test && test_cons(decoration.cons,tile):
-						place_deco(decoration, tile)
+			print(tiletype)
+			print(tile_dict.keys().map(func thingy(value):return value.name))
+			if tiletype in tile_dict.keys().map(func thingy(value):return value.name):
+				var arraay = tile_dict.get(name_to_tile[tiletype])
+				if arraay != null && arraay != []:
+					var test = true
+					for tile in arraay:
+						for child in tile.get_children(): 
+							if child not in decoration.shared: 
+								test = false
+						if randf()<=decoration.place_chance && test && test_cons(decoration.cons,tile):
+							place_deco(decoration, tile)
 
 ## Test conditions for a decoration
 func test_cons(cons:Array[TilePlaceCon], tile:ColorRect) -> bool:
@@ -242,7 +256,3 @@ func _on_button_pressed() -> void:
 	clear()
 	gen()
 	start()
-
-
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("inputt")

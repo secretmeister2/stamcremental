@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="SaveData" load_steps=18 format=3 uid="uid://dbrkcudyacy2r"]
+
+[ext_resource type="Script" uid="uid://cyfr2twsr20sn" path="res://tree_scripts_and_scenes/branch.gd" id="1_l7bs5"]
+[ext_resource type="Script" uid="uid://mopsvjeq84pk" path="res://management/data.gd" id="1_sgncs"]
+[ext_resource type="Script" uid="uid://dyxhg8av6mqkb" path="res://tree_scripts_and_scenes/nodeTypes/treenodetype.gd" id="2_ee0u7"]
+[ext_resource type="Script" uid="uid://bqjvxv3238vyo" path="res://statSystem/statDef.gd" id="2_l7bs5"]
+[ext_resource type="Resource" uid="uid://cl4u3cbdtdvqy" path="res://statSystem/statResources/craftingStats/craftingEfficiency.tres" id="3_ee0u7"]
+[ext_resource type="Resource" uid="uid://2qknxi6rkqhh" path="res://statSystem/statResources/gatheringStats/gatherEff.tres" id="4_w5fpq"]
+[ext_resource type="Resource" uid="uid://b5arv44i4dnnj" path="res://statSystem/statResources/gatheringStats/slotCount.tres" id="5_jfeef"]
+[ext_resource type="Resource" uid="uid://b4ewmcui3dhqu" path="res://statSystem/statResources/gatheringStats/weightPerSlot.tres" id="6_00i35"]
+[ext_resource type="Script" uid="uid://kxcx3qwn4ebf" path="res://gameplay_scripts_and_scenes/deco.gd" id="7_nt54b"]
+[ext_resource type="Script" uid="uid://dkcuqx3pe5a7b" path="res://gameplay_scripts_and_scenes/tile_place_con.gd" id="8_1bah5"]
+[ext_resource type="Script" uid="uid://dctuym202ux2t" path="res://gameplay_scripts_and_scenes/tile.gd" id="9_8iptw"]
+[ext_resource type="Resource" uid="uid://veygw70sg6j8" path="res://gameplay_scripts_and_scenes/defaultTile.tres" id="10_xkpoo"]
+
+[sub_resource type="Resource" id="Resource_w5fpq"]
+script = ExtResource("1_l7bs5")
+name = "Gathering"
+abilityTypes = Array[ExtResource("2_ee0u7")]([])
+metadata/_custom_type_script = ExtResource("1_l7bs5")
+
+[sub_resource type="Resource" id="Resource_ee0u7"]
+script = ExtResource("1_l7bs5")
+name = "World"
+abilityTypes = Array[ExtResource("2_ee0u7")]([])
+metadata/_custom_type_script = ExtResource("1_l7bs5")
+
+[sub_resource type="Resource" id="Resource_jfeef"]
+script = ExtResource("2_l7bs5")
+name = "GridSizeX"
+default_value = 6.0
+metadata/_custom_type_script = ExtResource("2_l7bs5")
+
+[sub_resource type="Resource" id="Resource_00i35"]
+script = ExtResource("2_l7bs5")
+name = "GridSizeY"
+default_value = 5.0
+metadata/_custom_type_script = ExtResource("2_l7bs5")
+
+[sub_resource type="Resource" id="Resource_2ejmb"]
+script = ExtResource("7_nt54b")
+size = 0.2
+place_chance = 0.1
+tiles = Array[String](["Forest", "Plain"])
+cons = Array[ExtResource("8_1bah5")]([])
+shared = Array[ExtResource("7_nt54b")]([])
+name = "Stone"
+col = Color(0.359069, 0.359069, 0.359069, 1)
+move_cost = 0.0
+metadata/_custom_type_script = ExtResource("7_nt54b")
+
+[resource]
+script = ExtResource("1_sgncs")
+modifiers = []
+unlocked_tiles = Array[ExtResource("9_8iptw")]([ExtResource("10_xkpoo")])
+unlocked_decos = Array[ExtResource("7_nt54b")]([SubResource("Resource_2ejmb")])
+branches = Array[ExtResource("1_l7bs5")]([SubResource("Resource_w5fpq"), SubResource("Resource_ee0u7")])
+stats = Array[ExtResource("2_l7bs5")]([ExtResource("3_ee0u7"), ExtResource("4_w5fpq"), ExtResource("5_jfeef"), ExtResource("6_00i35"), SubResource("Resource_jfeef"), SubResource("Resource_00i35")])
+metadata/_custom_type_script = ExtResource("1_sgncs")

@@ -1,7 +1,7 @@
 extends Resource
 class_name SkillTree
 ##The names of the branches in use for this tree
-@export var branches: Array[String]
+@export var branches: Array
 ##The tree storage
 @export var tree: Dictionary[Vector2,BaseTreeNode]
 var amount:int
@@ -9,6 +9,9 @@ var branch_nodes:Dictionary[String,Array]
 var origin:BaseTreeNode
 
 func gen_tree():
+	branches=Global.data.branches
+	branches=branches.map(func thingy(value): return value.name)
+	print(branches)
 	branches.shuffle()
 	origin = BaseTreeNode.new(Global.rarity.rare)
 	origin.is_origin=true
