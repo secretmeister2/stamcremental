@@ -14,3 +14,7 @@ class_name Deco
 @export var shared : Array[Deco]
 ## The stack collected from this tile
 @export var stack : ItemStack 
+## Collection Cost
+@export var cost : float
+## Consume deco upon collection
+@export var consume : bool

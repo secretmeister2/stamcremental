@@ -91,7 +91,10 @@ func move_player(place:ColorRect):
 		if place.get_child(0):
 			if place.get_child(0).get_meta("deco"):
 				Inventory.add_item(place.get_child(0).get_meta("deco").stack)
-				place.get_child(0).queue_free()
+				if place.get_child(0).get_meta("deco").cost:
+					stam -= place.get_child(0).get_meta("deco").cost
+				if place.get_child(0).get_meta("deco").consume:
+					place.get_child(0).queue_free()
 		if playing == true: stam -= place.get_meta("tile").move_cost
 
 ## Get a relative node from a node and offset

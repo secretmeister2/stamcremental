@@ -25,7 +25,7 @@ func slot_count_updated():
 func add_item(stack:ItemStack) -> bool:
 	for i in range(0,size-1):
 		if !items.has(i):
-			items.set(i,stack)
+			items.set(i,stack.duplicate())
 			return true
 		elif items.get(i).type == stack.type:
 			items.get(i).count += stack.count
