@@ -17,6 +17,9 @@ func add_item(stack:ItemStack) -> bool:
 		if !items.has(i):
 			items.set(i,stack)
 			return true
+		elif items.get(i).type == stack.type:
+			items.get(i).count += stack.count
+			return true
 	return false
 
 ## sets a slot to the given ItemStack

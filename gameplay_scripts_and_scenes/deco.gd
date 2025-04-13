@@ -12,3 +12,5 @@ class_name Deco
 @export var cons : Array[TilePlaceCon]
 ## Any other [Deco]s that CAN share a tile.
 @export var shared : Array[Deco]
+## The stack collected from this tile
+@export var stack : ItemStack 

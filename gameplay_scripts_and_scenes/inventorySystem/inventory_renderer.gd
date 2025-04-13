@@ -2,6 +2,8 @@ extends Control
 
 @export var slot_bg_color: Color
 
+
+
 func _process(delta: float) -> void:
 	for i in $layout.get_children():
 		i.queue_free()

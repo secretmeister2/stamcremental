@@ -80,6 +80,10 @@ func move_player(place:ColorRect):
 			player.pivot_offset=2*player.size
 			player.set_anchors_preset(Control.PRESET_TOP_LEFT, true)
 		Global.player_moved_to.emit(place)
+		if place.get_child(0):
+			if place.get_child(0).get_meta("deco"):
+				Inventory.add_item(place.get_child(0).get_meta("deco").stack)
+				place.get_child(0).queue_free()
 		if playing == true: stam -= place.get_meta("tile").move_cost
 
 ## Get a relative node from a node and offset
