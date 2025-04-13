@@ -22,7 +22,8 @@ func slot_count_updated():
 
 ## places an item in the first avaliable slot
 func add_item(stack:ItemStack) -> bool:
-	for i in range(0,size-1):
+	if not stack: return false
+	for i in range(0,size):
 		if !items.has(i):
 			items.set(i,stack.duplicate())
 			return true
@@ -30,6 +31,9 @@ func add_item(stack:ItemStack) -> bool:
 			items.get(i).count += stack.count
 			return true
 	return false
+
+func clear():
+	items={}
 
 ## sets a slot to the given ItemStack
 func set_slot(slot:int,stack:ItemStack) -> bool:

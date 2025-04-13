@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SaveData" load_steps=21 format=3 uid="uid://dbrkcudyacy2r"]
+[gd_resource type="Resource" script_class="SaveData" load_steps=25 format=3 uid="uid://dbrkcudyacy2r"]
 
 [ext_resource type="Script" uid="uid://cyfr2twsr20sn" path="res://tree_scripts_and_scenes/branch.gd" id="1_l7bs5"]
 [ext_resource type="Script" uid="uid://mopsvjeq84pk" path="res://management/data.gd" id="1_sgncs"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://veygw70sg6j8" path="res://gameplay_scripts_and_scenes/defaultTile.tres" id="10_xkpoo"]
 [ext_resource type="Script" uid="uid://jig240a738kq" path="res://gameplay_scripts_and_scenes/inventorySystem/itemstack.gd" id="11_jfeef"]
 [ext_resource type="Resource" uid="uid://cvf3gyryq205" path="res://gameplay_scripts_and_scenes/inventorySystem/items/rock.tres" id="12_00i35"]
+[ext_resource type="Resource" uid="uid://b2no4ftak7bd5" path="res://gameplay_scripts_and_scenes/inventorySystem/items/stick.tres" id="13_00i35"]
 
 [sub_resource type="Resource" id="Resource_w5fpq"]
 script = ExtResource("1_l7bs5")
@@ -40,10 +41,16 @@ default_value = 5.0
 metadata/_custom_type_script = ExtResource("2_l7bs5")
 
 [sub_resource type="Resource" id="Resource_nt54b"]
+script = ExtResource("2_l7bs5")
+name = "Tree1Size"
+default_value = 15.0
+metadata/_custom_type_script = ExtResource("2_l7bs5")
+
+[sub_resource type="Resource" id="Resource_1bah5"]
 script = ExtResource("11_jfeef")
 type = ExtResource("12_00i35")
 count = 1
-metadata/_custom_type_script = "uid://jig240a738kq"
+metadata/_custom_type_script = ExtResource("11_jfeef")
 
 [sub_resource type="Resource" id="Resource_2ejmb"]
 script = ExtResource("7_nt54b")
@@ -52,19 +59,40 @@ place_chance = 0.1
 tiles = Array[String](["Forest", "Plain"])
 cons = Array[ExtResource("8_1bah5")]([])
 shared = Array[ExtResource("7_nt54b")]([])
-stack = SubResource("Resource_nt54b")
-cost = 0.1
+stack = SubResource("Resource_1bah5")
+cost = 0.2
 consume = true
 name = "Stone"
 col = Color(0.359069, 0.359069, 0.359069, 1)
 move_cost = 0.0
 metadata/_custom_type_script = ExtResource("7_nt54b")
 
+[sub_resource type="Resource" id="Resource_8iptw"]
+script = ExtResource("11_jfeef")
+type = ExtResource("13_00i35")
+count = 1
+metadata/_custom_type_script = ExtResource("11_jfeef")
+
+[sub_resource type="Resource" id="Resource_xkpoo"]
+script = ExtResource("7_nt54b")
+size = 0.6
+place_chance = 0.1
+tiles = Array[String](["Plain", "Forest"])
+cons = Array[ExtResource("8_1bah5")]([])
+shared = Array[ExtResource("7_nt54b")]([])
+stack = SubResource("Resource_8iptw")
+cost = 2.0
+consume = false
+name = "Tree"
+col = Color(0, 0.321569, 0, 1)
+move_cost = 0.3
+metadata/_custom_type_script = ExtResource("7_nt54b")
+
 [resource]
 script = ExtResource("1_sgncs")
 modifiers = []
 unlocked_tiles = Array[ExtResource("9_8iptw")]([ExtResource("10_xkpoo")])
-unlocked_decos = Array[ExtResource("7_nt54b")]([SubResource("Resource_2ejmb")])
+unlocked_decos = Array[ExtResource("7_nt54b")]([SubResource("Resource_2ejmb"), SubResource("Resource_xkpoo")])
 branches = Array[ExtResource("1_l7bs5")]([SubResource("Resource_w5fpq"), SubResource("Resource_ee0u7")])
-stats = Array[ExtResource("2_l7bs5")]([ExtResource("3_ee0u7"), ExtResource("4_w5fpq"), ExtResource("5_jfeef"), ExtResource("6_00i35"), SubResource("Resource_jfeef"), SubResource("Resource_00i35")])
+stats = Array[ExtResource("2_l7bs5")]([ExtResource("3_ee0u7"), ExtResource("4_w5fpq"), ExtResource("5_jfeef"), ExtResource("6_00i35"), SubResource("Resource_jfeef"), SubResource("Resource_00i35"), SubResource("Resource_nt54b")])
 metadata/_custom_type_script = "uid://mopsvjeq84pk"

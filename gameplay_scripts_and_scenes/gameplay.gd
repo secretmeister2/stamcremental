@@ -40,9 +40,9 @@ var gameready = false
 @onready var row_container = $VBoxContainer/RowContainer
 
 
-
 ## Start the game
 func start():
+	Inventory.clear()
 	var tile:ColorRect
 	while not tile or tile.get_children().size()!=0:
 		tile = tile_dict.get(unlocked_base_tiles[0]).pick_random()
@@ -86,12 +86,14 @@ func move_player(place:ColorRect):
 			player.set_anchors_preset(Control.PRESET_TOP_LEFT, true)
 		Global.player_moved_to.emit(place)
 		if place.get_child(0):
-			if place.get_child(0).get_meta("deco"):
+			if place.get_child(0).has_meta("deco"):
 				Inventory.add_item(place.get_child(0).get_meta("deco").stack)
 				if place.get_child(0).get_meta("deco").cost:
 					stam -= place.get_child(0).get_meta("deco").cost
 				if place.get_child(0).get_meta("deco").consume:
 					place.get_child(0).queue_free()
+					player.pivot_offset=player.size/2
+					player.set_anchors_preset(Control.PRESET_CENTER, true)
 		if playing == true: stam -= place.get_meta("tile").move_cost
 
 ## Get a relative node from a node and offset
