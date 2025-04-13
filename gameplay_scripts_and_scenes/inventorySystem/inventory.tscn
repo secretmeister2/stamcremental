@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cd4h3a7igoldi"]
+[gd_scene load_steps=2 format=3 uid="uid://mw8q1ojei5yc"]
+
+[ext_resource type="Script" uid="uid://c7p06uel3pqay" path="res://gameplay_scripts_and_scenes/inventorySystem/inventory_renderer.gd" id="1_35oas"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -7,3 +9,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_35oas")
+slot_bg_color = Color(0.172833, 0.172833, 0.172833, 1)
+
+[node name="layout" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 14

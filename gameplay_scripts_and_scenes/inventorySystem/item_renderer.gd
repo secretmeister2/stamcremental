@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+extends CanvasItem
 
 @export var stack:ItemStack
 

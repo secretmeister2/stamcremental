@@ -1,12 +1,29 @@
-[gd_resource type="Resource" script_class="ItemType" load_steps=3 format=3 uid="uid://b2no4ftak7bd5"]
+[gd_resource type="Resource" script_class="ItemType" load_steps=6 format=3 uid="uid://b2no4ftak7bd5"]
 
 [ext_resource type="Script" uid="uid://0uq7plvmnqtu" path="res://gameplay_scripts_and_scenes/inventorySystem/itemtype.gd" id="1_fd3mu"]
+[ext_resource type="Script" uid="uid://cn6ugpsbovnnt" path="res://gameplay_scripts_and_scenes/inventorySystem/shape_def.gd" id="2_i3qq0"]
 [ext_resource type="Script" uid="uid://bhx3jwv4ijj3g" path="res://gameplay_scripts_and_scenes/inventorySystem/render_def.gd" id="2_p4de6"]
+
+[sub_resource type="Resource" id="Resource_iv1lh"]
+script = ExtResource("2_i3qq0")
+shape = PackedVector2Array(-135, -121, -248, 31, -238, 37, -152, -80, -126, -88, -129, -100, -145, -91, -128, -114)
+color = Color(0.48, 0.304, 0, 1)
+offset = Vector2(56.01, 14.835)
+rotation = 0.0
+scale = Vector2(0.3, 0.3)
+metadata/_custom_type_script = "uid://cn6ugpsbovnnt"
+
+[sub_resource type="Resource" id="Resource_i7kgs"]
+script = ExtResource("2_p4de6")
+shapes = Array[ExtResource("2_i3qq0")]([SubResource("Resource_iv1lh")])
+metadata/_custom_type_script = "uid://bhx3jwv4ijj3g"
 
 [resource]
 script = ExtResource("1_fd3mu")
 name = "Stick"
 weight = 0.5
 tags = Array[String](["Primitive", "Wooden"])
-renders = Dictionary[int, ExtResource("2_p4de6")]({})
-metadata/_custom_type_script = ExtResource("1_fd3mu")
+renders = Dictionary[int, ExtResource("2_p4de6")]({
+0: SubResource("Resource_i7kgs")
+})
+metadata/_custom_type_script = "uid://0uq7plvmnqtu"

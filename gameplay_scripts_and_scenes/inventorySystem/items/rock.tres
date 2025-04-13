@@ -8,8 +8,9 @@
 script = ExtResource("2_m76al")
 shape = PackedVector2Array(-11, -102, -120, -62, -152, 37, -80, 119, 18, 122, 64, 73, 52, -2, 53, -71)
 color = Color(0.454524, 0.454524, 0.454524, 1)
-offset = Vector2(0, 0)
-rotation = 3.795
+offset = Vector2(5, 0)
+rotation = 0.0
+scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cn6ugpsbovnnt"
 
 [sub_resource type="Resource" id="Resource_1hvm7"]

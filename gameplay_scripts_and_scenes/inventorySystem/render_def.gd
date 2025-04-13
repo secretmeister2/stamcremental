@@ -10,6 +10,6 @@ func _init():
 
 func render(parent: CanvasItem):
 	for shape in self.shapes:
-		parent.draw_set_transform(shape.offset,shape.rotation)
+		parent.draw_set_transform(shape.offset,shape.rotation,shape.scale)
 		parent.draw_colored_polygon(shape.shape,shape.color)
 		parent.draw_set_transform(Vector2.ZERO)
