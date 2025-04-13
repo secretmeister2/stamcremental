@@ -43,13 +43,10 @@ var gameready = false
 
 ## Start the game
 func start():
-	var deco = true
 	var tile:ColorRect
-	while deco:
+	while not tile or tile.get_children().size()!=0:
 		tile = tile_dict.get(unlocked_base_tiles[0]).pick_random()
-		deco=tile.get_child(0)
-		print(deco)
-	move_player(tile_dict.get(unlocked_base_tiles[0]).pick_random())
+	move_player(tile)
 	stam=max_stam
 	playing=true
 	stam_label.text=str(round(stam * 100) / 100.0)
@@ -194,8 +191,6 @@ func common_fix():
 ## Find and place a decoration
 func place_decoration(decoration:Deco):
 		for tiletype in decoration.tiles:
-			print(tiletype)
-			print(tile_dict.keys().map(func thingy(value):return value.name))
 			if tiletype in tile_dict.keys().map(func thingy(value):return value.name):
 				var arraay = tile_dict.get(name_to_tile[tiletype])
 				if arraay != null && arraay != []:

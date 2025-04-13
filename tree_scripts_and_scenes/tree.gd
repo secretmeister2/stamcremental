@@ -11,7 +11,6 @@ var origin:BaseTreeNode
 func gen_tree():
 	branches=Global.data.branches
 	branches=branches.map(func thingy(value): return value.name)
-	print(branches)
 	branches.shuffle()
 	origin = BaseTreeNode.new(Global.rarity.rare)
 	origin.is_origin=true
@@ -84,7 +83,6 @@ func disconnect_nodes(node1:BaseTreeNode,node2:BaseTreeNode):
 		node1.connected_from.erase(node2)
 		node2.connected_to.erase(node1)
 
-func _init(newamount:int, newbranches:Array[String]):
+func _init(newamount:int):
 	self.amount=newamount
-	self.branches=newbranches
 	self.gen_tree()

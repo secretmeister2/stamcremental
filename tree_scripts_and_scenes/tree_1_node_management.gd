@@ -1,5 +1,6 @@
 extends Node2D
 var hovered = false
+var treeman
 var node : BaseTreeNode:
 	set(value):
 		if is_instance_valid(value):

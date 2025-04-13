@@ -15,7 +15,6 @@ signal updated()
 
 func _ready() -> void:
 	size=slotCountStat.final_val
-	print(slotCountStat.final_val)
 	slotCountStat.val_changed.connect(slot_count_updated)
 
 func slot_count_updated():

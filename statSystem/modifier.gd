@@ -60,6 +60,10 @@ func cons_updated():
 			return
 	truth=true
 
+func mod_randomize(max_points:int):
+	pass
+
+
 func _get_property_list() -> Array:
 	var properties = []
 	match modify_type:

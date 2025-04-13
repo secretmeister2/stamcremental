@@ -47,7 +47,7 @@ func locationsofrarity(rarity:Global.rarity)->Array[Vector2]:
 var origin: BaseTreeNode
 
 func _ready() -> void:
-	var treee = SkillTree.new(15, ["Fire", "Earth", "Water", "Air"])
+	var treee = SkillTree.new(floor(Global.data.get_stat_or_null("Tree1Size").final_val))
 	construct_tree(treee)
 	pass
 
@@ -55,6 +55,7 @@ func construct_tree(tree:SkillTree):
 	for place in tree.tree.keys():
 		var nodedata=tree.tree[place]
 		var node=treenode.instantiate()
+		node.treeman=self
 		node.global_position=place
 		node.set_meta("node",nodedata)
 		node.node=nodedata

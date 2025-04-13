@@ -29,7 +29,6 @@ signal updated(thing)
 @export var stats : Array[StatDef]
 
 func get_stat_or_null(name:String)->StatDef:
-	print(name)
 	for stat in stats:
 		if stat.name == name: 
 			return stat
