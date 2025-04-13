@@ -1,13 +1,12 @@
 extends Node
 
 signal player_moved_to(place:ColorRect)
+
 ## Global reference to the save data
 var data:SaveData
 
-
-
-
-
+func _init() -> void:
+	data = load("res://savedata/save.tres")
 
 # Vars used for tree
 enum rarity{

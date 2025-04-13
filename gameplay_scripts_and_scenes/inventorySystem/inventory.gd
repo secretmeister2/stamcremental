@@ -11,6 +11,16 @@ signal updated()
 		items = value
 		updated.emit()
 
+@onready var slotCountStat=Global.data.get_stat_or_null("SlotCount")
+
+func _ready() -> void:
+	size=slotCountStat.final_val
+	print(slotCountStat.final_val)
+	slotCountStat.val_changed.connect(slot_count_updated)
+
+func slot_count_updated():
+	size=slotCountStat.final_val
+
 ## places an item in the first avaliable slot
 func add_item(stack:ItemStack) -> bool:
 	for i in range(0,size-1):
