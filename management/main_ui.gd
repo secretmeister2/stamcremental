@@ -3,7 +3,7 @@ extends Control
 @onready var gameplay = $TabContainer/Gameplay
 @onready var skilltree = $TabContainer/TreeManager
 
-func _on_tab_container_tab_changed(tab: int) -> void:
+func _on_tab_container_tab_changed(_tab: int) -> void:
 	if is_node_ready():
 		refocus()
 

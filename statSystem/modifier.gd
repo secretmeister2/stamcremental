@@ -26,10 +26,10 @@ signal valChanged()
 var dependentStat:StatDef:
 	set(value):
 		dependentStat=value
-		var list
+		var list=[]
 		for conn in dependentStat.changed.get_connections(): list.append(conn.callable)
 		if scal_val_changed not in list:
-			dependentStat.changed.connect(scal_val_changed())
+			dependentStat.changed.connect(scal_val_changed)
 ## The step that this stat should increase in
 var step:float
 ## The amount to multiply the dependent [Stat] by before adding to this [Stat].
@@ -39,19 +39,18 @@ var multOfDep:float
 var usevalue : float:
 	set(newvalue):
 		usevalue=newvalue
-		output=usevalue
+		valChanged.emit()
 var truth : bool = false:
 	set(value):
 		truth=value
 		valChanged.emit()
-var output : float:
-	set(value):
-		output=value
-		valChanged.emit()
+## Whether the modifier is good if it is lower or higher
+@export var isGood :bool=true
+
 
 func scal_val_changed():
 	if modify_type=="Scalar":
-		output=round(dependentStat.final_val*multOfDep*step)/step
+		usevalue=round(dependentStat.final_val*multOfDep*step)/step
 
 func cons_updated():
 	for con in conditions:
@@ -60,8 +59,12 @@ func cons_updated():
 			return
 	truth=true
 
-func mod_randomize(max_points:int):
-	pass
+func mod_randomize(basepoints:int, currentTiles:Array[Tile], currentDecos:Array[Deco]):
+	var points=basepoints
+	for con in conditions:
+		points -= con.con_randomize(round(points*0.125), currentTiles, currentDecos)
+	while points>0:
+		pass
 
 
 func _get_property_list() -> Array:
@@ -87,7 +90,7 @@ func _get_property_list() -> Array:
 			})
 		_:
 			properties.append({
-					"name" : "value",
+					"name" : "usevalue",
 					"type" : TYPE_FLOAT,
 					"usage" : PROPERTY_USAGE_EDITOR
 			})

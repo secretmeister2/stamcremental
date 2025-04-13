@@ -24,7 +24,7 @@ var color = Color(545454)
 #@export var preftags: Array[Global.basetags]
 var points=0
 ##@export var type:nodetype
-var distances={"origin" = 0, "epic"=0, "legendary"=0}
+var disorig:int
 var rarityarray:Array[int]=[0,30,15,5,0,0]
 var is_origin:bool=false
 var conn_orig=false
@@ -35,15 +35,10 @@ var branches:Array
 var ability : TreeNodeType
 
 func roll():
-	color=Global.raritycolors[rarity]
-	match rarity:
-		1: points = 20+distances["origin"]
-		2: points = 30+distances["origin"]
-		3: points = 45+distances["origin"]
-		4: points = 60+distances["origin"]
-		5: points = 80+distances["origin"]
-##	match ceil(randf_range(0,5)*rarity):
-
+	points=10+round(disorig/70)
+	if ability is BasicAbility: ability.gen_ability(points)
+	elif ability is TileOrDecoUnlock: ability.gen_ability(points)
+	
 func connect_check():
 	for node in connected_to:
 		for branch in branches:

@@ -1,96 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://b10hnlt1tkaik"]
+[gd_scene load_steps=4 format=3 uid="uid://b10hnlt1tkaik"]
 
 [ext_resource type="Script" uid="uid://bqvhmfahfjx4j" path="res://gameplay_scripts_and_scenes/gameplay.gd" id="1_n4psk"]
-[ext_resource type="Script" uid="uid://dctuym202ux2t" path="res://gameplay_scripts_and_scenes/tile.gd" id="2_7cp7r"]
-[ext_resource type="Script" uid="uid://kxcx3qwn4ebf" path="res://gameplay_scripts_and_scenes/deco.gd" id="3_saxfp"]
-[ext_resource type="Script" uid="uid://dkcuqx3pe5a7b" path="res://gameplay_scripts_and_scenes/tile_place_con.gd" id="4_mosag"]
 [ext_resource type="PackedScene" uid="uid://5d7wuewwa0o1" path="res://gameplay_scripts_and_scenes/player.tscn" id="5_1ym3n"]
 [ext_resource type="PackedScene" uid="uid://mw8q1ojei5yc" path="res://gameplay_scripts_and_scenes/inventorySystem/inventory.tscn" id="6_mbman"]
-
-[sub_resource type="Resource" id="Resource_saxfp"]
-script = ExtResource("2_7cp7r")
-blob_size = 1.7
-max_blobs = 1
-name = "Grass"
-col = Color(0, 0.494118, 0, 1)
-move_cost = 0.1
-metadata/_custom_type_script = "uid://dctuym202ux2t"
-
-[sub_resource type="Resource" id="Resource_7cp7r"]
-script = ExtResource("2_7cp7r")
-blob_size = 2.2
-max_blobs = 3
-name = "Forest"
-col = Color(0, 0.196078, 0, 1)
-move_cost = 0.2
-metadata/_custom_type_script = "uid://dctuym202ux2t"
-
-[sub_resource type="Resource" id="Resource_mosag"]
-script = ExtResource("2_7cp7r")
-blob_size = 3.1
-max_blobs = 2
-name = "Desert"
-col = Color(0.814304, 0.65187, 0.197291, 1)
-move_cost = 0.1
-metadata/_custom_type_script = "uid://dctuym202ux2t"
-
-[sub_resource type="Resource" id="Resource_1ym3n"]
-script = ExtResource("2_7cp7r")
-blob_size = 4.2
-max_blobs = 1
-name = "Ocean"
-col = Color(0.0222154, 0.257695, 1, 1)
-move_cost = 1.0
-metadata/_custom_type_script = "uid://dctuym202ux2t"
-
-[sub_resource type="Resource" id="Resource_mbman"]
-script = ExtResource("3_saxfp")
-size = 0.5
-place_chance = 0.2
-tiles = Array[String](["Forest"])
-cons = Array[ExtResource("4_mosag")]([])
-shared = Array[ExtResource("3_saxfp")]([])
-cost = 0.0
-consume = false
-name = "Tree"
-col = Color(0, 0.517647, 0, 1)
-move_cost = 0.1
-metadata/_custom_type_script = "uid://kxcx3qwn4ebf"
-
-[sub_resource type="Resource" id="Resource_5p4kp"]
-script = ExtResource("3_saxfp")
-size = 0.3
-place_chance = 0.1
-tiles = Array[String](["Forest", "Desert"])
-cons = Array[ExtResource("4_mosag")]([])
-shared = Array[ExtResource("3_saxfp")]([])
-cost = 0.0
-consume = false
-name = "Stone"
-col = Color(0.385493, 0.385492, 0.385492, 1)
-move_cost = 0.1
-metadata/_custom_type_script = "uid://kxcx3qwn4ebf"
-
-[sub_resource type="Resource" id="Resource_eanoa"]
-script = ExtResource("4_mosag")
-req_tiles = Array[String](["Ocean"])
-req_num = 5
-inverted = true
-metadata/_custom_type_script = "uid://dkcuqx3pe5a7b"
-
-[sub_resource type="Resource" id="Resource_3k5v4"]
-script = ExtResource("3_saxfp")
-size = 0.7
-place_chance = 0.3
-tiles = Array[String](["Ocean"])
-cons = Array[ExtResource("4_mosag")]([SubResource("Resource_eanoa")])
-shared = Array[ExtResource("3_saxfp")]([])
-cost = 0.0
-consume = false
-name = "Ocean_Rock"
-col = Color(0.359069, 0.359069, 0.359069, 1)
-move_cost = 0.1
-metadata/_custom_type_script = "uid://kxcx3qwn4ebf"
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -100,9 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n4psk")
-grid_size = Vector2(9, 9)
-unlocked_base_tiles = Array[ExtResource("2_7cp7r")]([SubResource("Resource_saxfp"), SubResource("Resource_7cp7r"), SubResource("Resource_mosag"), SubResource("Resource_1ym3n")])
-unlocked_decos = Array[ExtResource("3_saxfp")]([SubResource("Resource_mbman"), SubResource("Resource_5p4kp"), SubResource("Resource_3k5v4")])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

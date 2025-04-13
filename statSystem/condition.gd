@@ -14,9 +14,14 @@ var type :String:
 ## The type of comparison for above
 var comparator: String
 ## Whether to compare to a constant or another [Stat]
-var constorstat : String
+var constorstat : String:
+	set(value):
+		constorstat=value
+		notify_property_list_changed()
 ## The amount to compare against, if constant
 var amount: float
+## Whether a higher amount is good
+var morebetter:=true
 ## The stat to compare against if stat
 var compStat : StatDef
 var distance: int
@@ -40,8 +45,19 @@ func tile_on_updated(new_place):
 		truth=true
 	else: truth=false
 
+func con_randomize(basePoints:int,currentTiles:Array[Tile],currentDecos:Array[Deco]):
+	tile=currentTiles.pick_random()
+	deco=currentDecos.pick_random()
+	if type == "StatCompare" && constorstat == "Const":
+		for _i in range(0,basePoints+1):
+			if morebetter:
+				amount*=1.1
+			else:
+				amount*=0.9
+		return basePoints
+	return 0
 func _init() -> void:
-	Global.player_moved_to.connect(tile_on_updated)
+	Global.player_moved_to.connect(tile_on_updated.bind())
 
 func _get_property_list() -> Array:
 	var properties = []
@@ -59,34 +75,31 @@ func _get_property_list() -> Array:
 				"type" : TYPE_FLOAT,
 				"usage" : PROPERTY_USAGE_EDITOR
 			})
-		"PlayerNearTileorDeco":
 			properties.append({
-				"name" : "distance",
-				"type" : TYPE_INT,
-				"usage" : PROPERTY_USAGE_EDITOR
-			})
-			properties.append({
-				"name" : "tileOrDeco",
+				"name" : "constorstat",
 				"type" : TYPE_STRING,
 				"hint" : PROPERTY_HINT_ENUM,
-				"hint_string" : "Tile,Deco",
+				"hint_string" : "Const,Stat",
 				"usage" : PROPERTY_USAGE_EDITOR
 			})
-			match tileOrDeco:
-				"Tile":
+			match constorstat:
+				"Const":
 					properties.append({
-					"name" : "tile",
-					"type" : TYPE_OBJECT,
-					"hint" : PROPERTY_HINT_RESOURCE_TYPE,
-					"hint_string" : "Tile",
-					"usage" : PROPERTY_USAGE_EDITOR
+						"name" : "morebetter",
+						"type" : TYPE_BOOL,
+						"usage" : PROPERTY_USAGE_EDITOR
 					})
-				"Deco":
 					properties.append({
-					"name" : "deco",
+						"name" : "amount",
+						"type" : TYPE_INT,
+						"usage" : PROPERTY_USAGE_EDITOR
+					})
+				"Stat":
+					properties.append({
+					"name" : "compStat",
 					"type" : TYPE_OBJECT,
 					"hint" : PROPERTY_HINT_RESOURCE_TYPE,
-					"hint_string" : "Deco",
+					"hint_string" : "StatDef",
 					"usage" : PROPERTY_USAGE_EDITOR
 					})
 		"PlayerOnTileOrDeco":

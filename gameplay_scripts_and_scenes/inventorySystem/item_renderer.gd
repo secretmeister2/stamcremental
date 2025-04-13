@@ -13,3 +13,7 @@ func _draw() -> void:
 func _pressed() -> void:
 	Global.data.selected_slot = slot
 	Inventory.updated.emit()
+
+func _process(_delta: float) -> void:
+	#queue_redraw()
+	pass

@@ -4,7 +4,7 @@ var focused = false
 
 var tilesize : int = 30
 ## The size of the play grid
-@export var grid_size: Vector2
+var grid_size: Vector2
 ## The maximum stamina in current scope
 var max_stam: float=10
 ## Counter of current stamina
@@ -18,9 +18,9 @@ var stam: float=max_stam:
 			stam_label.text=str(round(stam * 100) / 100.0)
 
 ## The base tiles that are currently unlocked
-@export var unlocked_base_tiles:Array[Tile]
+var unlocked_base_tiles:Array[Tile]
 ## The list of decorations that are unlocked
-@export var unlocked_decos:Array[Deco]
+var unlocked_decos:Array[Deco]
 
 
 ## Maps the nodes to the data
@@ -62,7 +62,7 @@ func clear():
 	gameready = false
 
 ## Handle movement
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	if playing && focused:
 		if Input.is_action_just_pressed("ui_down"):
 			move_player(get_relative(player.get_parent(), Vector2(0,1)))

@@ -23,6 +23,7 @@ func gen_tree():
 		var node=BaseTreeNode.new(Global.rarity.common, branches[i])
 		connect_nodes(origin,node)
 		tree[vector]=node
+		node.disorig=vector.distance_to(Vector2(0,0))
 		node.status="available"
 		var temp = branch_nodes.get_or_add(branches[i],[])
 		temp.append(vector)
@@ -48,6 +49,7 @@ func gen_tree():
 			temp.append(vector)
 			branch_nodes.set(branch,temp)
 		tree[vector]=node
+		node.disorig=vector.distance_to(Vector2(0,0))
 		var treeminself = tree.duplicate()
 		treeminself.erase(vector)
 		treeminself.erase(Vector2(0,0))
@@ -69,7 +71,9 @@ func gen_tree():
 					if randf()*tree[thing].connected_from.size()+node.connected_to.size() < 2 && not origin in tree[thing].connected_from:
 						connect_nodes(node,tree[thing])
 	origin.connect_check()
-		
+	for node in origin.connected_to:
+		node.roll()
+	
 func connect_nodes(fromnode:BaseTreeNode,tonode:BaseTreeNode):
 	if fromnode==tonode:printerr("Tried to connect node "+str(fromnode)+" to itself.")
 	if not tonode in fromnode.connected_to:fromnode.connected_to.append(tonode)

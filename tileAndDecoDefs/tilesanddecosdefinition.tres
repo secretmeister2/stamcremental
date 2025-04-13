@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="TilesAndDecosDefinition" load_steps=7 format=3 uid="uid://dstwg415vh7if"]
+
+[ext_resource type="Script" uid="uid://kxcx3qwn4ebf" path="res://gameplay_scripts_and_scenes/deco.gd" id="1_p1nl8"]
+[ext_resource type="Script" uid="uid://l0st7yminc" path="res://tileAndDecoDefs/tiles_and_decos_def.gd" id="2_ckbun"]
+[ext_resource type="Script" uid="uid://dctuym202ux2t" path="res://gameplay_scripts_and_scenes/tile.gd" id="3_67lim"]
+
+[sub_resource type="Resource" id="Resource_8x8j6"]
+script = ExtResource("3_67lim")
+blob_size = 2.1
+max_blobs = 2
+name = "Desert"
+col = Color(0.495354, 0.448395, 0.311527, 1)
+move_cost = 0.1
+metadata/_custom_type_script = ExtResource("3_67lim")
+
+[sub_resource type="Resource" id="Resource_p1nl8"]
+script = ExtResource("3_67lim")
+blob_size = 1.7
+max_blobs = 3
+name = "Forest"
+col = Color(0.0245798, 0.239901, 0.1252, 1)
+move_cost = 0.2
+metadata/_custom_type_script = ExtResource("3_67lim")
+
+[sub_resource type="Resource" id="Resource_ckbun"]
+script = ExtResource("3_67lim")
+blob_size = 3.0
+max_blobs = 1
+name = "Mountain"
+col = Color(0.158472, 0.158472, 0.158472, 1)
+move_cost = 0.3
+metadata/_custom_type_script = ExtResource("3_67lim")
+
+[resource]
+script = ExtResource("2_ckbun")
+tiles_rarities = Dictionary[ExtResource("3_67lim"), int]({
+SubResource("Resource_8x8j6"): 1,
+SubResource("Resource_p1nl8"): 1,
+SubResource("Resource_ckbun"): 2
+})
+decos_rarities = Dictionary[ExtResource("1_p1nl8"), int]({})
+metadata/_custom_type_script = ExtResource("2_ckbun")

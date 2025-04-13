@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cex30e65hhxk5"]
+[gd_scene load_steps=2 format=3 uid="uid://cex30e65hhxk5"]
 
 [ext_resource type="Script" uid="uid://1rd2acdp44ws" path="res://tree_scripts_and_scenes/tree_manager.gd" id="1_to3ld"]
-[ext_resource type="PackedScene" uid="uid://dr2log5tww6gm" path="res://tree_scripts_and_scenes/tree_1_node.tscn" id="2_terwb"]
 
 [node name="TreeManager" type="Control"]
 layout_mode = 3
@@ -39,9 +38,6 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
 position = Vector2(-3, 3)
 position_smoothing_speed = 50.0
-
-[node name="Tree1Node" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("2_terwb")]
-visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

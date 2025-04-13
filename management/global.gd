@@ -1,9 +1,18 @@
 extends Node
 
 signal player_moved_to(place:ColorRect)
+signal stat_changed(stat:StatDef)
 
 ## Global reference to the save data
-var data:SaveData
+var data:SaveData:
+	set(value):
+		data=value
+		for stat in data.stats:
+			if not stat.val_changed.has_connections():
+				stat.val_changed.connect(stat_changed_func.bind())
+
+func stat_changed_func(stat:StatDef):
+	stat_changed.emit(stat)
 
 func _init() -> void:
 	data = load("res://savedata/save.tres")
