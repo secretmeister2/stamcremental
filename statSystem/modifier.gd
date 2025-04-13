@@ -2,6 +2,7 @@
 extends Resource
 ## A modifier modifies a [Stat] based on [Condition]s.
 class_name Modifier
+signal valChanged()
 ##Array of conditions required for modifier to be active
 @export var conditions: Array[Condition]:
 	set(value):
@@ -22,17 +23,42 @@ class_name Modifier
 		notify_property_list_changed()
 @export_group("Scalar")
 ## [Stat] that it scales off of
-var dependentStat:StatDef
+var dependentStat:StatDef:
+	set(value):
+		dependentStat=value
+		var list
+		for conn in dependentStat.changed.get_connections(): list.append(conn.callable)
+		if scal_val_changed not in list:
+			dependentStat.changed.connect(scal_val_changed())
 ## The step that this stat should increase in
 var step:float
 ## The amount to multiply the dependent [Stat] by before adding to this [Stat].
 var multOfDep:float
 @export_group("")
 ## What value this uses for the above
-var value : float
+var usevalue : float:
+	set(newvalue):
+		usevalue=newvalue
+		output=usevalue
+var truth : bool = false:
+	set(value):
+		truth=value
+		valChanged.emit()
+var output : float:
+	set(value):
+		output=value
+		valChanged.emit()
+
+func scal_val_changed():
+	if modify_type=="Scalar":
+		output=round(dependentStat.final_val*multOfDep*step)/step
 
 func cons_updated():
-	return
+	for con in conditions:
+		if not con.truth: 
+			truth=false
+			return
+	truth=true
 
 func _get_property_list() -> Array:
 	var properties = []

@@ -216,6 +216,7 @@ func place_deco(decoration:Deco, tile: ColorRect):
 	deco.size=Vector2(30,30)
 	deco.pivot_offset=deco.size/2
 	deco.scale=decoration.size*Vector2(1,1)
+	deco.set_meta("deco", decoration)
 	player.set_anchors_preset(Control.PRESET_CENTER, true)
 
 ## Get neighbouring tiles of [param rect], [param type] can be [code]4[/code] for direct adjacencies or [code]8[/code] for all

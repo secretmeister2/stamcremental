@@ -21,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_v14sc")
 
 [node name="TabContainer" type="TabContainer" parent="."]
@@ -31,52 +32,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-current_tab = 1
+current_tab = 0
 tab_focus_mode = 0
-
-[node name="SkillTree" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="SkillTreeViewport" type="SubViewportContainer" parent="TabContainer/SkillTree"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="TabContainer/SkillTree/SkillTreeViewport"]
-handle_input_locally = false
-gui_embed_subwindows = true
-size = Vector2i(2, 2)
-render_target_update_mode = 0
-
-[node name="TreeManager" parent="TabContainer/SkillTree/SkillTreeViewport/SubViewport" instance=ExtResource("2_qk0v6")]
-offset_top = 31.0
-mouse_filter = 0
-
-[node name="RecenterButton" type="Button" parent="TabContainer/SkillTree"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -78.0
-offset_top = -31.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Recenter"
 
 [node name="Gameplay" parent="TabContainer" instance=ExtResource("3_32xi3")]
 layout_mode = 2
-metadata/_tab_index = 1
+mouse_filter = 1
+metadata/_tab_index = 0
 
 [node name="Stats" parent="TabContainer" instance=ExtResource("4_tlejk")]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+metadata/_tab_index = 1
+
+[node name="TreeManager" parent="TabContainer" instance=ExtResource("2_qk0v6")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
@@ -88,5 +58,3 @@ script = ExtResource("5_sowne")
 stack = SubResource("Resource_32xi3")
 
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
-[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_recenter_button_pressed"]
-[connection signal="pressed" from="TabContainer/SkillTree/RecenterButton" to="." method="_on_button_pressed"]

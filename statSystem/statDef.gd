@@ -5,7 +5,12 @@ class_name StatDef
 ## The default value of this stastic
 @export var default_value : float
 ## All modifiers that affect this stat
-var modifiers : Array[Modifier]
+var modifiers : Array[Modifier]:
+	set(value):
+		modifiers=value
+		for mod in modifiers:
+			if not mod.valChanged.has_connections():
+				mod.valChanged.connect(mods_updated)
 ## Final calculated value of stat 
 var final_val : float
 

@@ -10,8 +10,9 @@ var origin:BaseTreeNode
 
 func gen_tree():
 	branches.shuffle()
-	origin = BaseTreeNode.new(Global.rarity.rare, "origin")
+	origin = BaseTreeNode.new(Global.rarity.rare)
 	origin.is_origin=true
+	origin.status="bought"
 	tree[Vector2(0,0)]=origin
 	for i in range(branches.size()):
 		var vector:Vector2
@@ -20,6 +21,7 @@ func gen_tree():
 		var node=BaseTreeNode.new(Global.rarity.common, branches[i])
 		connect_nodes(origin,node)
 		tree[vector]=node
+		node.status="available"
 		var temp = branch_nodes.get_or_add(branches[i],[])
 		temp.append(vector)
 		branch_nodes.set(branches[i],temp)
@@ -35,7 +37,7 @@ func gen_tree():
 		
 		var vector:Vector2
 		var i = 0.0
-		while Global.dist_to_nearest_node(vector, tree.keys()) < 115.0 or Global.dist_to_nearest_node(vector, valid_tree) >140:
+		while Global.dist_to_nearest_node(vector, tree.keys()) < 105 or Global.dist_to_nearest_node(vector, valid_tree) >140:
 			vector = (tree.size()+15)*Vector2(randi_range(-15,15),randi_range(-15,15))
 			i+=0.5
 		var node=BaseTreeNode.new(Global.rarity.common)
@@ -49,7 +51,7 @@ func gen_tree():
 		treeminself.erase(Vector2(0,0))
 		for thing in node.connected_from:treeminself.erase(thing)
 		var neighbour = Global.get_nearest_node(vector,treeminself)
-		node.branches.append_array(neighbour.branches)
+		#node.branches.append_array(neighbour.branches)
 		connect_nodes(neighbour,node)
 	##Setting up branches
 	for node in tree.values():
@@ -64,10 +66,10 @@ func gen_tree():
 				if thing.distance_to(nodepos) < 120:
 					if randf()*tree[thing].connected_from.size()+node.connected_to.size() < 2 && not origin in tree[thing].connected_from:
 						connect_nodes(node,tree[thing])
-						node.branches.append_array(tree[thing].branches)
+	origin.connect_check()
 		
 func connect_nodes(fromnode:BaseTreeNode,tonode:BaseTreeNode):
-	if fromnode==tonode:print("huh")
+	if fromnode==tonode:printerr("Tried to connect node "+str(fromnode)+" to itself.")
 	if not tonode in fromnode.connected_to:fromnode.connected_to.append(tonode)
 	if not fromnode in tonode.connected_from:tonode.connected_from.append(fromnode)
 

@@ -9,7 +9,6 @@ var data:SaveData
 
 
 
-
 # Vars used for tree
 enum rarity{
 	common=1,

@@ -6,7 +6,7 @@ class_name Condition
 signal updated()
 
 ## The type of condition.[br][code]"PlayerOnTileOrDeco"[/code] if player must be atop a specified [Tile] or [Deco].[br][code]"PlayerNearTileorDeco"[/code] if the player has to be near a specified [Tile] or [Deco].[br][code]"StatCompare"[/code] if one [Stat] is to be compared to another or a constant.
-@export_enum("PlayerOnTileOrDeco", "PlayerNearTileorDeco", "StatCompare") 
+@export_enum("PlayerOnTileOrDeco", "StatCompare") 
 var type :String:
 	set(value):
 		type=value
@@ -30,8 +30,18 @@ var tile: Tile
 ## The [Deco] this condition checks for
 var deco: Deco
 ## Parameter keeping track of whether this condition is currently [code]true[/code] or [code]false[/code].
-var truth = false
+var truth = false:
+	set(value):
+		truth=value
+		emit_changed()
 
+func tile_on_updated(new_place):
+	if (tileOrDeco == "Tile" && new_place.get_meta("tile") == tile) or (new_place.get_children()[0].get_meta("deco")==deco && tileOrDeco=="Deco"):
+		truth=true
+	else: truth=false
+
+func _init() -> void:
+	Global.player_moved_to.connect(tile_on_updated)
 
 func _get_property_list() -> Array:
 	var properties = []

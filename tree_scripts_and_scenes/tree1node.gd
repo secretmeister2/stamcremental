@@ -2,24 +2,23 @@ extends Resource
 class_name BaseTreeNode
 
 var neighbours:Array[BaseTreeNode]
+signal alpha_changed()
 
 var alpha = 0:
 	set(value):
 		alpha=value
+		alpha_changed.emit()
 var color = Color(545454)
-@export_enum("locked", "available", "bought") var status:String:
+@export_enum("locked", "available", "bought") var status:String="locked":
 	set(value):
 		status = value
-		match value:
+		match status:
 			"locked":
-				if alpha:
-					alpha=60
+				alpha=0.4
 			"available":
-				if alpha:
-					alpha=0
+				alpha=0
 			"bought":
-				if alpha:
-					alpha=85
+				alpha=0.2
 
 @export var rarity:Global.rarity=-1
 #@export var preftags: Array[Global.basetags]
@@ -32,7 +31,7 @@ var conn_orig=false
 var connections:Array[Connector]
 var connected_from:Array[BaseTreeNode]
 var connected_to:Array[BaseTreeNode]
-var branches:Array[String]
+var branches:Array
 var ability : TreeNodeType
 
 func roll():
@@ -46,18 +45,12 @@ func roll():
 ##	match ceil(randf_range(0,5)*rarity):
 
 func connect_check():
-	if is_origin: conn_orig = true
-	if conn_orig: 
-		for node in connected_to:
-			if not node.conn_orig:
-				var test = true
-				for fromnode in node.connected_from:
-					if not fromnode.conn_orig:
-						test = false
-				if test:
-					node.conn_orig=true
-					node.connect_check()
-
+	for node in connected_to:
+		for branch in branches:
+			if branch not in node.branches:
+				node.branches.append(branch)
+		node.connect_check()
+	
 func _init(newrarity=-1, branch:String=""):
 	if newrarity != -1: self.rarity=newrarity
 	if branch != "": self.branches.append(branch)
@@ -65,15 +58,21 @@ func _init(newrarity=-1, branch:String=""):
 func trybuy():
 	if status!="available": return
 	var test = true
-	for item in ability.cost.keys():
-		if not Inventory.has_items(item, ability.cost[item]):
-			test = false
+	#for item in ability.cost.keys():
+	#	if not Inventory.has_items(item, ability.cost[item]):
+	#		test = false
 	if test == true:
 		buy()
 
 func buy():
 	status = "bought"
-	for item in  ability.cost.keys():
-		Inventory.remove_items(item, ability.cost[item])
-	ability.bought()
-		
+	#for item in  ability.cost.keys():
+	#	Inventory.remove_items(item, ability.cost[item])
+	#ability.bought()
+	for node in connected_to: 
+		var test = true
+		for other_con in node.connected_from:
+			if other_con.status!="bought":
+				test=false
+		if test: node.status="available"
+	

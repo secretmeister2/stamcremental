@@ -3,16 +3,16 @@ var deszoom:float = 1.0
 var despos:Vector2 = Vector2(0,0)
 func _process(_delta: float) -> void:
 	if focused:
-		#camera.position += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		despos += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		camera.position = lerp(camera.position,despos, 0.2)
 		var zoom:float = lerpf(camera.zoom.x,deszoom,0.2)
 		camera.zoom = Vector2(zoom,zoom)
 
 func recenter():
-	camera.position = Vector2(0,0)
+	despos=Vector2(0,0)
 	deszoom = 1.0
 
-func _unhandled_input(event: InputEvent):
+func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		var mouse = event as InputEventMouseMotion
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
@@ -34,9 +34,9 @@ var treenode = preload("res://tree_scripts_and_scenes/tree_1_node.tscn")
 var connector = preload("res://tree_scripts_and_scenes/connector.tscn")
 var focused = false
 var locations:Dictionary[Vector2,Global.rarity]
-@onready var nodes= $Nodes
-@onready var connects= $Connects
-@onready var camera = $Camera2D
+@onready var nodes= $HBoxContainer/SubViewportContainer/SubViewport/Nodes
+@onready var connects= $HBoxContainer/SubViewportContainer/SubViewport/Connects
+@onready var camera = $HBoxContainer/SubViewportContainer/SubViewport/Camera2D
 
 func locationsofrarity(rarity:Global.rarity)->Array[Vector2]:
 	var array:Array[Vector2]
@@ -60,6 +60,7 @@ func construct_tree(tree:SkillTree):
 		node.node=nodedata
 		node.get_node("RarityColor").color = Global.raritycolors[nodedata.rarity]
 		nodes.add_child(node)
+		node.node.status=node.node.status
 	for node in nodes.get_children():
 		var nodedata=node.get_meta("node")
 		for tonode in nodedata.connected_to:
@@ -86,5 +87,6 @@ func connectnodes(node1:BaseTreeNode, node2:BaseTreeNode):
 		node1.connected_to.append(node2)
 
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("input")
+
+func _on_recenter_pressed() -> void:
+	recenter()

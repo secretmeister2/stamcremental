@@ -47,6 +47,7 @@ mouse_filter = 1
 color = Color(0.67059, 0.428767, 0.895374, 1)
 
 [node name="PopupPanel" type="PopupPanel" parent="."]
+handle_input_locally = false
 visible = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PopupPanel"]
@@ -55,7 +56,8 @@ offset_top = 4.0
 offset_right = 96.0
 offset_bottom = 96.0
 mouse_filter = 2
-text = "HELLO"
+text = "Why is it like this"
+fit_content = true
 
 [connection signal="gui_input" from="RarityColor" to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="RarityColor" to="." method="_on_mouse_entered"]
