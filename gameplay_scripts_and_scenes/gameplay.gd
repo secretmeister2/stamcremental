@@ -102,12 +102,12 @@ func move_player(place:ColorRect):
 
 ## Get a relative node from a node and offset
 func get_relative(tile:ColorRect, offset:Vector2)->ColorRect:
-	var current_y=tile.get_parent().name.right(1)
+	var current_y=tile.get_parent().name.replace("Row_","")
+	var current_x=tile.name.replace("Tile_"+current_y+"_","")
 	var targetrow=row_container.get_node_or_null("Row_" + str(int(current_y)+int(offset.y)))
-	if targetrow==null:
-		return null
-	return targetrow.get_node_or_null("Tile_"+str(int(current_y)+int(offset.y))+"_"+str(int(tile.name.right(1))+int(offset.x)))
-
+	if targetrow:
+		return targetrow.get_node_or_null("Tile_"+str(int(current_y)+int(offset.y))+"_"+str(int(current_x)+int(offset.x)))
+	return null
 ## Generate the base layer from the first entry in unlocked base tiles
 func gen_base_tiles():
 	for i in range(1,grid_size.y+1):
