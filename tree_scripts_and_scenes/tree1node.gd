@@ -39,7 +39,7 @@ func roll(unlockedTiles:Array[Tile],unlockedDecos:Array[Deco],notTile:bool=false
 	var names = Global.data.branches.map(func thingy(value): return value.name)
 	while not ability or ability.point_cost > points:
 		ability = Global.data.branches[names.find(branches[0])].abilityTypes.pick_random()
-		#if not (notTile and (ability is TileOrDecoUnlock)): ability=null
+		if notTile and (ability is TileOrDecoUnlock): ability=null
 	var newthing
 	if ability is BasicAbility: 
 		var temp_modifiers= ability.modifiers

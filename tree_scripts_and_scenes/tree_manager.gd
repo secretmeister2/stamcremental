@@ -51,6 +51,12 @@ func _ready() -> void:
 	construct_tree(treee)
 	pass
 
+func display_data(place:Node):
+	print(place)
+
+func undisplay_data(place:Node):
+	print(place)
+
 func construct_tree(tree:SkillTree):
 	for place in tree.tree.keys():
 		var nodedata=tree.tree[place]
@@ -62,6 +68,8 @@ func construct_tree(tree:SkillTree):
 		node.get_node("RarityColor").color = Global.raritycolors[nodedata.rarity]
 		nodes.add_child(node)
 		node.node.status=node.node.status
+		node.hovered.connect(display_data.bind())
+		node.unhovered.connect(undisplay_data.bind())
 	for node in nodes.get_children():
 		var nodedata=node.get_meta("node")
 		for tonode in nodedata.connected_to:

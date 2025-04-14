@@ -3,3 +3,4 @@ extends Resource
 class_name TreeNodeType
 ## The base point cost of this node type
 @export var point_cost : int
+@export var item_cost:Dictionary
