@@ -10,8 +10,8 @@ signal valChanged()
 		for condition in conditions:
 			if not condition.updated.has_connections():
 				condition.updated.connect(cons_updated)
-##The stat that this modifier affects
-@export var affected_stat: StatDef
+##The name of the stat that this modifier affects
+@export var affected_stat: String
 ## What type this stat is.
 ##[br][code]"Multiplier"[/code] indicates that this modifier multiplies a given [Stat]
 ##[br][code]"Additive"[/code] indicates that this modifier adds to a given [Stat]
@@ -21,7 +21,6 @@ signal valChanged()
 	set(new):
 		modify_type=new
 		notify_property_list_changed()
-@export_group("Scalar")
 ## [Stat] that it scales off of
 var dependentStat:StatDef:
 	set(value):
@@ -34,23 +33,26 @@ var dependentStat:StatDef:
 var step:float
 ## The amount to multiply the dependent [Stat] by before adding to this [Stat].
 var multOfDep:float
-@export_group("")
 ## What value this uses for the above
-var usevalue : float:
+@export
+var useValue : float:
 	set(newvalue):
-		usevalue=newvalue
+		useValue=newvalue
+		if conditions.is_empty(): truth=true
 		valChanged.emit()
 var truth : bool = false:
 	set(value):
 		truth=value
 		valChanged.emit()
 ## Whether the modifier is good if it is lower or higher
-@export var isGood :bool=true
+@export var isGood :bool=true:
+	set(value):
+		isGood=value
 
 
 func scal_val_changed():
 	if modify_type=="Scalar":
-		usevalue=round(dependentStat.final_val*multOfDep*step)/step
+		useValue=round(dependentStat.final_val*multOfDep*step)/step
 
 func cons_updated():
 	for con in conditions:
@@ -61,11 +63,17 @@ func cons_updated():
 
 func mod_randomize(basepoints:int, currentTiles:Array[Tile], currentDecos:Array[Deco]):
 	var points=basepoints
+
 	for con in conditions:
 		points -= con.con_randomize(round(points*0.125), currentTiles, currentDecos)
 	while points>0:
-		pass
-
+		if modify_type=="Additive" or modify_type=="Multiplier" or modify_type=="Replace":
+			if isGood: useValue*=1.1
+			else: useValue*=0.9
+			points-=2
+		elif modify_type == "Scalar":
+			multOfDep*=1.1
+			points-=4
 
 func _get_property_list() -> Array:
 	var properties = []
@@ -88,10 +96,10 @@ func _get_property_list() -> Array:
 					"type" : TYPE_FLOAT,
 					"usage" : PROPERTY_USAGE_EDITOR
 			})
-		_:
-			properties.append({
-					"name" : "usevalue",
-					"type" : TYPE_FLOAT,
-					"usage" : PROPERTY_USAGE_EDITOR
-			})
+		#_:
+			#properties.append({
+			#		"name" : "useValue",
+			#		"type" : TYPE_FLOAT,
+			#		"usage" : PROPERTY_USAGE_EDITOR
+			#})
 	return properties

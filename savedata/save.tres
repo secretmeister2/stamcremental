@@ -1,49 +1,97 @@
-[gd_resource type="Resource" script_class="SaveData" load_steps=25 format=3 uid="uid://dbrkcudyacy2r"]
+[gd_resource type="Resource" script_class="SaveData" load_steps=31 format=3 uid="uid://dbrkcudyacy2r"]
 
 [ext_resource type="Script" uid="uid://cyfr2twsr20sn" path="res://tree_scripts_and_scenes/branch.gd" id="1_l7bs5"]
 [ext_resource type="Script" uid="uid://mopsvjeq84pk" path="res://management/data.gd" id="1_sgncs"]
 [ext_resource type="Script" uid="uid://dyxhg8av6mqkb" path="res://tree_scripts_and_scenes/nodeTypes/treenodetype.gd" id="2_ee0u7"]
 [ext_resource type="Script" uid="uid://bqjvxv3238vyo" path="res://statSystem/statDef.gd" id="2_l7bs5"]
 [ext_resource type="Resource" uid="uid://cl4u3cbdtdvqy" path="res://statSystem/statResources/craftingStats/craftingEfficiency.tres" id="3_ee0u7"]
+[ext_resource type="Script" uid="uid://ds1lye3gg7pea" path="res://tree_scripts_and_scenes/nodeTypes/ability.gd" id="3_xkpoo"]
 [ext_resource type="Resource" uid="uid://2qknxi6rkqhh" path="res://statSystem/statResources/gatheringStats/gatherEff.tres" id="4_w5fpq"]
+[ext_resource type="Script" uid="uid://y7fnxk45rnbh" path="res://statSystem/modifier.gd" id="4_xgnvx"]
 [ext_resource type="Resource" uid="uid://b5arv44i4dnnj" path="res://statSystem/statResources/gatheringStats/slotCount.tres" id="5_jfeef"]
 [ext_resource type="Resource" uid="uid://b4ewmcui3dhqu" path="res://statSystem/statResources/gatheringStats/weightPerSlot.tres" id="6_00i35"]
+[ext_resource type="Script" uid="uid://cimwmsmaggfd2" path="res://statSystem/condition.gd" id="6_6j43m"]
+[ext_resource type="Script" uid="uid://1fbslpxmgvvc" path="res://tree_scripts_and_scenes/nodeTypes/new_tile_or_deco.gd" id="7_8sgr1"]
 [ext_resource type="Script" uid="uid://kxcx3qwn4ebf" path="res://gameplay_scripts_and_scenes/deco.gd" id="7_nt54b"]
 [ext_resource type="Script" uid="uid://dkcuqx3pe5a7b" path="res://gameplay_scripts_and_scenes/tile_place_con.gd" id="8_1bah5"]
 [ext_resource type="Script" uid="uid://dctuym202ux2t" path="res://gameplay_scripts_and_scenes/tile.gd" id="9_8iptw"]
 [ext_resource type="Resource" uid="uid://veygw70sg6j8" path="res://gameplay_scripts_and_scenes/defaultTile.tres" id="10_xkpoo"]
 [ext_resource type="Script" uid="uid://jig240a738kq" path="res://gameplay_scripts_and_scenes/inventorySystem/itemstack.gd" id="11_jfeef"]
 [ext_resource type="Resource" uid="uid://cvf3gyryq205" path="res://gameplay_scripts_and_scenes/inventorySystem/items/rock.tres" id="12_00i35"]
-[ext_resource type="Resource" uid="uid://b2no4ftak7bd5" path="res://gameplay_scripts_and_scenes/inventorySystem/items/stick.tres" id="13_00i35"]
+
+[sub_resource type="Resource" id="Resource_lress"]
+script = ExtResource("4_xgnvx")
+conditions = Array[ExtResource("6_6j43m")]([])
+affected_stat = "GatheringEfficiency"
+modify_type = "Additive"
+useValue = 0.1
+isGood = true
+metadata/_custom_type_script = ExtResource("4_xgnvx")
+
+[sub_resource type="Resource" id="Resource_pkfkh"]
+script = ExtResource("3_xkpoo")
+modifiers = [SubResource("Resource_lress")]
+modcost = Array[float]([])
+base_point_cost = 0
+point_cost = 3
+metadata/_custom_type_script = ExtResource("3_xkpoo")
 
 [sub_resource type="Resource" id="Resource_w5fpq"]
 script = ExtResource("1_l7bs5")
 name = "Gathering"
-abilityTypes = Array[ExtResource("2_ee0u7")]([])
+abilityTypes = Array[ExtResource("2_ee0u7")]([SubResource("Resource_pkfkh")])
 metadata/_custom_type_script = ExtResource("1_l7bs5")
+
+[sub_resource type="Resource" id="Resource_r680g"]
+script = ExtResource("7_8sgr1")
+point_cost = 0
+metadata/_custom_type_script = ExtResource("7_8sgr1")
+
+[sub_resource type="Resource" id="Resource_xkpoo"]
+script = ExtResource("4_xgnvx")
+conditions = Array[ExtResource("6_6j43m")]([])
+affected_stat = "GridSizeX"
+modify_type = "Additive"
+useValue = 1.0
+isGood = true
+metadata/_custom_type_script = ExtResource("4_xgnvx")
+
+[sub_resource type="Resource" id="Resource_8iptw"]
+script = ExtResource("3_xkpoo")
+modifiers = [SubResource("Resource_xkpoo")]
+modcost = Array[float]([])
+base_point_cost = 0
+point_cost = 2
+metadata/_custom_type_script = ExtResource("3_xkpoo")
 
 [sub_resource type="Resource" id="Resource_ee0u7"]
 script = ExtResource("1_l7bs5")
 name = "World"
-abilityTypes = Array[ExtResource("2_ee0u7")]([])
+abilityTypes = Array[ExtResource("2_ee0u7")]([SubResource("Resource_r680g"), SubResource("Resource_8iptw")])
 metadata/_custom_type_script = ExtResource("1_l7bs5")
 
 [sub_resource type="Resource" id="Resource_jfeef"]
 script = ExtResource("2_l7bs5")
 name = "GridSizeX"
 default_value = 6.0
+modifiers = Array[ExtResource("4_xgnvx")]([])
+final_val = 6.0
 metadata/_custom_type_script = ExtResource("2_l7bs5")
 
 [sub_resource type="Resource" id="Resource_00i35"]
 script = ExtResource("2_l7bs5")
 name = "GridSizeY"
 default_value = 5.0
+modifiers = Array[ExtResource("4_xgnvx")]([])
+final_val = 5.0
 metadata/_custom_type_script = ExtResource("2_l7bs5")
 
 [sub_resource type="Resource" id="Resource_nt54b"]
 script = ExtResource("2_l7bs5")
 name = "Tree1Size"
 default_value = 15.0
+modifiers = Array[ExtResource("4_xgnvx")]([])
+final_val = 15.0
 metadata/_custom_type_script = ExtResource("2_l7bs5")
 
 [sub_resource type="Resource" id="Resource_1bah5"]
@@ -55,8 +103,11 @@ metadata/_custom_type_script = ExtResource("11_jfeef")
 [sub_resource type="Resource" id="Resource_2ejmb"]
 script = ExtResource("7_nt54b")
 size = 0.2
-place_chance = 0.1
-tiles = Array[String](["Forest", "Plain"])
+tilesChance = Dictionary[String, float]({
+"Forest": 0.1,
+"Mountain": 0.2,
+"Plain": 0.05
+})
 cons = Array[ExtResource("8_1bah5")]([])
 shared = Array[ExtResource("7_nt54b")]([])
 stack = SubResource("Resource_1bah5")
@@ -67,32 +118,12 @@ col = Color(0.359069, 0.359069, 0.359069, 1)
 move_cost = 0.0
 metadata/_custom_type_script = ExtResource("7_nt54b")
 
-[sub_resource type="Resource" id="Resource_8iptw"]
-script = ExtResource("11_jfeef")
-type = ExtResource("13_00i35")
-count = 1
-metadata/_custom_type_script = ExtResource("11_jfeef")
-
-[sub_resource type="Resource" id="Resource_xkpoo"]
-script = ExtResource("7_nt54b")
-size = 0.6
-place_chance = 0.1
-tiles = Array[String](["Plain", "Forest"])
-cons = Array[ExtResource("8_1bah5")]([])
-shared = Array[ExtResource("7_nt54b")]([])
-stack = SubResource("Resource_8iptw")
-cost = 2.0
-consume = false
-name = "Tree"
-col = Color(0, 0.321569, 0, 1)
-move_cost = 0.3
-metadata/_custom_type_script = ExtResource("7_nt54b")
-
 [resource]
 script = ExtResource("1_sgncs")
 modifiers = []
 unlocked_tiles = Array[ExtResource("9_8iptw")]([ExtResource("10_xkpoo")])
-unlocked_decos = Array[ExtResource("7_nt54b")]([SubResource("Resource_2ejmb"), SubResource("Resource_xkpoo")])
+unlocked_decos = Array[ExtResource("7_nt54b")]([SubResource("Resource_2ejmb")])
+selected_slot = 0
 branches = Array[ExtResource("1_l7bs5")]([SubResource("Resource_w5fpq"), SubResource("Resource_ee0u7")])
 stats = Array[ExtResource("2_l7bs5")]([ExtResource("3_ee0u7"), ExtResource("4_w5fpq"), ExtResource("5_jfeef"), ExtResource("6_00i35"), SubResource("Resource_jfeef"), SubResource("Resource_00i35"), SubResource("Resource_nt54b")])
 metadata/_custom_type_script = "uid://mopsvjeq84pk"

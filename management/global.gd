@@ -16,7 +16,6 @@ func stat_changed_func(stat:StatDef):
 
 func _init() -> void:
 	data = load("res://savedata/save.tres")
-
 # Vars used for tree
 enum rarity{
 	common=1,

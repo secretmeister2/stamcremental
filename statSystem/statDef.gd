@@ -1,3 +1,4 @@
+@tool
 extends Resource
 class_name StatDef
 signal val_changed(stat:StatDef)
@@ -9,28 +10,29 @@ signal val_changed(stat:StatDef)
 		default_value=value
 		mods_updated()
 ## All modifiers that affect this stat
-var modifiers : Array[Modifier]:
+@export var modifiers : Array[Modifier]:
 	set(value):
 		modifiers=value
 		for mod in modifiers:
 			if not mod.valChanged.has_connections():
 				mod.valChanged.connect(mods_updated)
+		mods_updated()
 ## Final calculated value of stat 
-var final_val : float=default_value:
+@export var final_val : float=default_value:
 	set(value):
 		final_val=value
 		val_changed.emit(self)
 
 func mods_updated():
-	var mult = 1
-	var add = 0
+	var mult = 1.0
+	var add = 0.0
 	for mod in modifiers:
 		if mod.truth:
 			match mod.modify_type:
-				"Additive": add+=mod.usevalue
-				"Multiplier": mult+=mod.usevalue
-				"Scalar": add+=mod.usevalue
+				"Additive": add+=mod.useValue
+				"Multiplier": mult+=mod.useValue
+				"Scalar": add+=mod.useValue
 				"Replace": 
-					final_val=mod.usevalue
+					final_val=mod.useValue
 					return
 	final_val = (default_value+add)*mult

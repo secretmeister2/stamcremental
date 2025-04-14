@@ -4,10 +4,8 @@ class_name Deco
 
 ## The size of this deco, [code]1[/code] to cover full [Tile]
 @export_range(0,1,0.1) var size:float
-## The chance of this deco being placed each valid [Tile]
-@export_range(0,1,0.1) var place_chance:float
-## The [Tile]s that this deco can be placed on.
-@export var tiles : Array[String]
+## The [Tile]s that this deco can be placed on, and the corresponding place chance
+@export var tilesChance : Dictionary[String,float]
 ## Any [TilePlaceCon]s for this deco. All must return true for this deco to be placed.
 @export var cons : Array[TilePlaceCon]
 ## Any other [Deco]s that CAN share a tile.

@@ -1,16 +1,18 @@
 extends TreeNodeType
 class_name BasicAbility
 ## The modifiers that compose this ability
-@export var modifiers:Array[Modifier]
+@export_custom(PROPERTY_HINT_ARRAY_TYPE, "24/17:Modifier") var modifiers:Array
 @export var modcost:Array[float]
-@export var base_cost:int
+@export var base_point_cost:int
 func bought():
 	for mod in modifiers:
-		mod.affected_stat.modifiers.append(mod)
+		var temp = Global.data.get_stat_or_null(mod.affected_stat).modifiers
+		temp.append(mod)
+		Global.data.get_stat_or_null(mod.affected_stat).modifiers=temp
 
 func gen_ability(basepoints:int, currentTiles:Array[Tile], currentDecos:Array[Deco]):
 	var points = basepoints
-	points -= base_cost
+	points -= point_cost
 	modifiers.shuffle()
 	var array:Array[int]
 	for mod in modifiers:
@@ -19,4 +21,4 @@ func gen_ability(basepoints:int, currentTiles:Array[Tile], currentDecos:Array[De
 		array.shuffle()
 		array[0]+=1
 	for mod in modifiers:
-		mod.randomize(array[modifiers.find(mod)], currentTiles,currentDecos)
+		mod.mod_randomize(array[modifiers.find(mod)], currentTiles,currentDecos)

@@ -56,6 +56,7 @@ func con_randomize(basePoints:int,currentTiles:Array[Tile],currentDecos:Array[De
 				amount*=0.9
 		return basePoints
 	return 0
+
 func _init() -> void:
 	Global.player_moved_to.connect(tile_on_updated.bind())
 

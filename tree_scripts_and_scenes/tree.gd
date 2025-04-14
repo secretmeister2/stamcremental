@@ -72,7 +72,7 @@ func gen_tree():
 						connect_nodes(node,tree[thing])
 	origin.connect_check()
 	for node in origin.connected_to:
-		node.roll()
+		node.roll(Global.data.unlocked_tiles.duplicate(),Global.data.unlocked_decos.duplicate())
 	
 func connect_nodes(fromnode:BaseTreeNode,tonode:BaseTreeNode):
 	if fromnode==tonode:printerr("Tried to connect node "+str(fromnode)+" to itself.")

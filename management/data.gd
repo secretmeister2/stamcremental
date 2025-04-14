@@ -9,6 +9,7 @@ signal updated(thing)
 @export var unlocked_tiles:Array[Tile]:
 	set(value):
 		unlocked_tiles = value
+		print("UpdatedDataTiles")
 		updated.emit()
 @export var unlocked_decos:Array[Deco]:
 	set(value):

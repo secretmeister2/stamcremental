@@ -87,7 +87,11 @@ func move_player(place:ColorRect):
 		Global.player_moved_to.emit(place)
 		if place.get_child(0):
 			if place.get_child(0).has_meta("deco"):
-				Inventory.add_item(place.get_child(0).get_meta("deco").stack)
+				var eff = Global.data.get_stat_or_null("GatheringEfficiency").final_val
+				for i in range(0,floor(eff)):
+					Inventory.add_item(place.get_child(0).get_meta("deco").stack)
+				if randf()<eff-floor(eff):
+					Inventory.add_item(place.get_child(0).get_meta("deco").stack)
 				if place.get_child(0).get_meta("deco").cost:
 					stam -= place.get_child(0).get_meta("deco").cost
 				if place.get_child(0).get_meta("deco").consume:
@@ -157,7 +161,7 @@ func gen_tile_type(type:Tile):
 func gen():
 	unlocked_base_tiles=Global.data.unlocked_tiles
 	unlocked_decos=Global.data.unlocked_decos
-	grid_size=Vector2(Global.data.get_stat_or_null("GridSizeX").final_val,Global.data.get_stat_or_null("GridSizeY").final_val)
+	grid_size=Vector2(round(Global.data.get_stat_or_null("GridSizeX").final_val),round(Global.data.get_stat_or_null("GridSizeY").final_val))
 	gen_base_tiles()
 	var base_tiles = unlocked_base_tiles.duplicate()
 	base_tiles.erase(unlocked_base_tiles[0])
@@ -192,7 +196,7 @@ func common_fix():
 
 ## Find and place a decoration
 func place_decoration(decoration:Deco):
-		for tiletype in decoration.tiles:
+		for tiletype in decoration.tilesChance.keys():
 			if tiletype in tile_dict.keys().map(func thingy(value):return value.name):
 				var arraay = tile_dict.get(name_to_tile[tiletype])
 				if arraay != null && arraay != []:
@@ -201,7 +205,7 @@ func place_decoration(decoration:Deco):
 						for child in tile.get_children(): 
 							if child not in decoration.shared: 
 								test = false
-						if randf()<=decoration.place_chance && test && test_cons(decoration.cons,tile):
+						if randf()<=decoration.tilesChance[tiletype] && test && test_cons(decoration.cons,tile):
 							place_deco(decoration, tile)
 
 ## Test conditions for a decoration
