@@ -33,6 +33,7 @@ mouse_filter = 1
 [node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
 z_index = 1
 layout_mode = 2
+focus_mode = 0
 mouse_filter = 1
 text = "Start Anew"
 

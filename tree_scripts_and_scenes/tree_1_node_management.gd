@@ -1,5 +1,11 @@
 extends Node2D
-var hovered = false
+signal hovered(node:Node)
+signal unhovered(node:Node)
+var currhovered = false:
+	set(value):
+		currhovered=value
+		if currhovered: hovered.emit(self)
+		else: unhovered.emit(self)
 var treeman
 var node : BaseTreeNode:
 	set(value):
@@ -7,22 +13,14 @@ var node : BaseTreeNode:
 			node=value
 			node.alpha_changed.connect(alpha_changed)
 
-@onready var popup = $PopupPanel
-
-func _ready() -> void:
-	popup.popup()
-	popup.hide()
-
 func alpha_changed():
 	$ColorShade.color=Color(0,0,0,node.alpha)
 
 func _on_mouse_entered() -> void:
-	hovered=true
-	popup.show()
+	currhovered=true
 
 func _on_mouse_exited() -> void:
-	hovered=false
-	popup.hide()
+	currhovered=false
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action("click"):
