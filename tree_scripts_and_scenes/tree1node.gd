@@ -100,3 +100,6 @@ func buy():
 				test=false
 		if test: node.status="available"
 	
+func parse()->String:
+	print("NodeParse")
+	return ability.parse()

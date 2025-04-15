@@ -28,7 +28,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Connects" type="Node2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
@@ -38,13 +38,6 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
 position = Vector2(-3, 3)
 position_smoothing_speed = 50.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-text = "Node Info"
-fit_content = true
 
 [node name="Recenter" type="Button" parent="."]
 layout_mode = 1
@@ -59,5 +52,25 @@ grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 1
 text = "Recenter"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0.325441, 0.325441, 0.325441, 1)
+self_modulate = Color(0.299547, 0.299547, 0.299547, 1)
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "Node Info"
+fit_content = true
+
+[node name="Panel" type="Panel" parent="RichTextLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="Recenter" to="." method="_on_recenter_pressed"]

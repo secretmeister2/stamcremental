@@ -13,10 +13,10 @@ signal valChanged()
 ##The name of the stat that this modifier affects
 @export var affected_stat: String
 ## What type this stat is.
-##[br][code]"Multiplier"[/code] indicates that this modifier multiplies a given [Stat]
-##[br][code]"Additive"[/code] indicates that this modifier adds to a given [Stat]
-##[br][code]"Replace"[/code] indicates that this modifier replaces a given [Stat]
-##[br][code]"Scalar"[/code] indicates that this modifier scales one [Stat] based on the value of another [Stat]
+##\n[code]"Multiplier"[/code] indicates that this modifier multiplies a given [Stat]
+##\n[code]"Additive"[/code] indicates that this modifier adds to a given [Stat]
+##\n[code]"Replace"[/code] indicates that this modifier replaces a given [Stat]
+##\n[code]"Scalar"[/code] indicates that this modifier scales one [Stat] based on the value of another [Stat]
 @export_enum("Multiplier", "Additive", "Replace", "Scalar") var modify_type:String:
 	set(new):
 		modify_type=new

@@ -22,3 +22,7 @@ func gen_ability(basepoints:int, currentTiles:Array[Tile], currentDecos:Array[De
 		array[0]+=1
 	for mod in modifiers:
 		mod.mod_randomize(array[modifiers.find(mod)], currentTiles,currentDecos)
+
+func parse()->String:
+	print("BaseAbilityParse")
+	return ""

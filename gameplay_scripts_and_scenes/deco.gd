@@ -16,3 +16,19 @@ class_name Deco
 @export var cost : float
 ## Consume deco upon collection
 @export var consume : bool
+func parse()->String:
+	var chancestring:String
+	var array = tilesChance.keys()
+	var stackstring=""
+	array.map(func named(value): return value + "with a chance of "+str(tilesChance[value]))
+	chancestring=",".join(array)
+	var consumestring = " not"
+	if consume: 
+		consumestring=""
+	var sharestring="no other decorations."
+	if shared:
+		sharestring = ",".join(shared.map(func named(value): return value.name))
+	if stack:
+		stackstring="This decoration gives "+str(stack.count)+" "+stack.type.name+". It is"+consumestring+" consumed. This costs "+str(cost) +" stamina\n"
+	print("decoration "+name+"\nThis decoration can be found in "+chancestring+".\n"+stackstring+"It can share its location with "+sharestring)
+	return "decoration "+name+"\nThis decoration can be found in "+chancestring+".\n"+stackstring+"It can share its location with "+sharestring

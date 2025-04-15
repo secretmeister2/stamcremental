@@ -1,6 +1,9 @@
 extends Control
 var deszoom:float = 1.0
 var despos:Vector2 = Vector2(0,0)
+@onready var label = $RichTextLabel
+#@onready var panel = $RichTextLabel/Panel
+
 func _process(_delta: float) -> void:
 	if focused:
 		despos += 10*Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -52,10 +55,15 @@ func _ready() -> void:
 	pass
 
 func display_data(place:Node):
-	print(place)
+	label.text=(place.get_meta("node").parse())
+	label.global_position=place.global_position
+	if not label.get_parent():
+		place.add_child(label)
+	else: label.reparent(place)
 
 func undisplay_data(place:Node):
-	print(place)
+	if label.get_parent():
+		label.get_parent().remove_child(label)
 
 func construct_tree(tree:SkillTree):
 	for place in tree.tree.keys():

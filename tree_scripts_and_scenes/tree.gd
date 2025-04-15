@@ -15,6 +15,7 @@ func gen_tree():
 	origin = BaseTreeNode.new(Global.rarity.rare)
 	origin.is_origin=true
 	origin.status="bought"
+	origin.ability=OriginAbility.new()
 	tree[Vector2(0,0)]=origin
 	for i in range(branches.size()):
 		var vector:Vector2

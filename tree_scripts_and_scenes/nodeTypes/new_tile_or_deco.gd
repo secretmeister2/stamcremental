@@ -3,7 +3,7 @@ class_name TileOrDecoUnlock
 @export var new_tile_or_deco: TilesAndDecos:
 	set(value):
 		new_tile_or_deco=value
-var tiledecodef=preload("res://tileAndDecoDefs/tilesanddecosdefinition.tres")
+var tiledecodef=preload("res://tileAndDecoDefs/tilesanddecosdef.tres")
 func bought():
 	if is_instance_of(new_tile_or_deco, Tile):
 		Global.data.unlocked_tiles.append(new_tile_or_deco)
@@ -24,3 +24,7 @@ func gen_ability(points:int, currentTiles:Array[Tile], currentDecos:Array[Deco])
 		new_tile_or_deco=tiledecodef.choose_random(possibleDecos,currentDecos,points)
 		if new_tile_or_deco==null: return null
 	return new_tile_or_deco
+
+func parse()->String:
+	print("ParseNewTile")
+	return "This unlocks the " + new_tile_or_deco.parse() +".\nIt has a cost of "
