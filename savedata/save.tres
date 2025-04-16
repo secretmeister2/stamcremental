@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://dyxhg8av6mqkb" path="res://tree_scripts_and_scenes/nodeTypes/treenodetype.gd" id="2_ee0u7"]
 [ext_resource type="Script" uid="uid://bqjvxv3238vyo" path="res://statSystem/statDef.gd" id="2_l7bs5"]
 [ext_resource type="Resource" uid="uid://cl4u3cbdtdvqy" path="res://statSystem/statResources/craftingStats/craftingEfficiency.tres" id="3_ee0u7"]
-[ext_resource type="Script" uid="uid://ds1lye3gg7pea" path="res://tree_scripts_and_scenes/nodeTypes/ability.gd" id="3_xkpoo"]
+[ext_resource type="Script" uid="uid://ds1lye3gg7pea" path="res://tree_scripts_and_scenes/nodeTypes/modifier_ability.gd" id="3_xkpoo"]
 [ext_resource type="Resource" uid="uid://2qknxi6rkqhh" path="res://statSystem/statResources/gatheringStats/gatherEff.tres" id="4_w5fpq"]
 [ext_resource type="Script" uid="uid://y7fnxk45rnbh" path="res://statSystem/modifier.gd" id="4_xgnvx"]
 [ext_resource type="Resource" uid="uid://b5arv44i4dnnj" path="res://statSystem/statResources/gatheringStats/slotCount.tres" id="5_jfeef"]

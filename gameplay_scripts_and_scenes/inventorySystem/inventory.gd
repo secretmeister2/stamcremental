@@ -23,16 +23,30 @@ func slot_count_updated():
 ## places an item in the first avaliable slot
 func add_item(stack:ItemStack) -> bool:
 	if not stack: return false
-	for i in range(0,size):
-		if !items.has(i):
-			items.set(i,stack.duplicate())
+	if stack.count * stack.type.weight > Global.data.get_stat_or_null("WeightPerSlot").final_val:
+		return false
+	var currentTypes = items.values().map(func type(value): return value.type)
+	if stack.type in currentTypes:
+		var test = false
+		for existstack in items.values():
+			if existstack.type == stack.type:
+				for i in range(0,stack.count):
+					if not (existstack.type.weight*existstack.count+1)> Global.data.get_stat_or_null("WeightPerSlot").final_val:
+						existstack.count += 1
+						test=true
+		if test: 
 			updated.emit()
 			return true
-		elif items.get(i).type == stack.type:
-			items.get(i).count += stack.count
-			updated.emit()
-			return true
-	return false
+		else: return false
+	elif items.size()<size:
+		for i in range(0,size):
+			if i not in items.keys():
+				items[i]=stack.duplicate()
+				updated.emit()
+				return true
+		return false
+	else: return false
+	
 
 func clear():
 	updated.emit()
@@ -41,6 +55,8 @@ func clear():
 ## sets a slot to the given ItemStack
 func set_slot(slot:int,stack:ItemStack) -> bool:
 	if slot == null || stack == null:
+		return false
+	if stack.count*stack.type.weight > Global.data.get_stat_or_null("WeightPerSlot").final_val:
 		return false
 	if slot < size:
 		items.set(slot,stack)
@@ -60,7 +76,9 @@ func has_items(type:ItemType,count:int=1) -> bool:
 ## checks if the player has a certain number of items of a type in their inventory and if they do remove them
 func remove_items(type:ItemType,count:int=1) -> bool:
 	if has_items(type,count):
-		for v in items.values():
+		var tempArr = items.values()
+		tempArr.reverse()
+		for v in tempArr:
 			if v.type == type:
 				var itmcount = v.count
 				count -= v.sub(mini(v.count,count))

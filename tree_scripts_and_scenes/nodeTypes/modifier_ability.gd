@@ -1,9 +1,10 @@
 extends TreeNodeType
-class_name BasicAbility
+class_name ModifierAbility
 ## The modifiers that compose this ability
 @export_custom(PROPERTY_HINT_ARRAY_TYPE, "24/17:Modifier") var modifiers:Array
 @export var modcost:Array[float]
 @export var base_point_cost:int
+
 func bought():
 	for mod in modifiers:
 		var temp = Global.data.get_stat_or_null(mod.affected_stat).modifiers

@@ -49,6 +49,8 @@ var truth : bool = false:
 	set(value):
 		isGood=value
 
+func parse()->String:
+	return ""
 
 func scal_val_changed():
 	if modify_type=="Scalar":
