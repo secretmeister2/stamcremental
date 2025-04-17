@@ -41,7 +41,7 @@ func roll(unlockedTiles:Array[Tile],unlockedDecos:Array[Deco],notTile:bool=false
 		ability = Global.data.branches[names.find(branches[0])].abilityTypes.pick_random()
 		if notTile and (ability is TileOrDecoUnlock): ability=null
 	var newthing
-	if ability is BasicAbility: 
+	if ability is ModifierAbility: 
 		var temp_modifiers= ability.modifiers
 		temp_modifiers=temp_modifiers.map(func uniquify(value): return value.duplicate())
 		ability=ability.duplicate(true)

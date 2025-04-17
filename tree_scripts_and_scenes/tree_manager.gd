@@ -56,7 +56,7 @@ func _ready() -> void:
 
 func display_data(place:Node):
 	label.text=(place.get_meta("node").parse())
-	label.global_position=place.global_position
+	#label.position=place.position
 	if not label.get_parent():
 		place.add_child(label)
 	else: label.reparent(place)

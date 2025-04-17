@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TilesAndDecosDefinition" load_steps=12 format=3 uid="uid://bhrl2tlcmcyyl"]
+[gd_resource type="Resource" script_class="TilesAndDecosDefinition" load_steps=14 format=3 uid="uid://bhrl2tlcmcyyl"]
 
 [ext_resource type="Script" uid="uid://kxcx3qwn4ebf" path="res://gameplay_scripts_and_scenes/deco.gd" id="1_p1nl8"]
 [ext_resource type="Script" uid="uid://dkcuqx3pe5a7b" path="res://gameplay_scripts_and_scenes/tile_place_con.gd" id="2_8x8j6"]
@@ -28,6 +28,29 @@ name = "Tree"
 col = Color(0, 0.305882, 0, 1)
 move_cost = 0.1
 metadata/_custom_type_script = "uid://kxcx3qwn4ebf"
+
+[sub_resource type="Resource" id="Resource_fdihn"]
+script = ExtResource("2_8x8j6")
+req_tiles = Array[String](["Ocean"])
+req_num = 3
+inverted = true
+metadata/_custom_type_script = ExtResource("2_8x8j6")
+
+[sub_resource type="Resource" id="Resource_6ncsd"]
+script = ExtResource("1_p1nl8")
+size = 0.5
+tilesChance = Dictionary[String, float]({
+"Mountain": 0.2,
+"Ocean": 0.4
+})
+cons = Array[ExtResource("2_8x8j6")]([SubResource("Resource_fdihn")])
+shared = Array[ExtResource("1_p1nl8")]([])
+cost = 0.0
+consume = false
+name = "Boulder"
+col = Color(0.29219, 0.29219, 0.29219, 1)
+move_cost = 0.6
+metadata/_custom_type_script = ExtResource("1_p1nl8")
 
 [sub_resource type="Resource" id="Resource_8x8j6"]
 script = ExtResource("3_67lim")
@@ -64,6 +87,7 @@ SubResource("Resource_p1nl8"): 1,
 SubResource("Resource_ckbun"): 2
 })
 decos_rarities = Dictionary[ExtResource("1_p1nl8"), int]({
-SubResource("Resource_vwjy4"): 0
+SubResource("Resource_vwjy4"): 1,
+SubResource("Resource_6ncsd"): 2
 })
 metadata/_custom_type_script = "uid://l0st7yminc"

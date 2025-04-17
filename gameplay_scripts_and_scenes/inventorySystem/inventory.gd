@@ -22,31 +22,30 @@ func slot_count_updated():
 
 ## places an item in the first avaliable slot
 func add_item(stack:ItemStack) -> bool:
+	var added = false
+	var maxweight = Global.data.get_stat_or_null("WeightPerSlot").final_val
 	if not stack: return false
-	if stack.count * stack.type.weight > Global.data.get_stat_or_null("WeightPerSlot").final_val:
-		return false
+	if stack.type.weight >= maxweight: return false
 	var currentTypes = items.values().map(func type(value): return value.type)
-	if stack.type in currentTypes:
-		var test = false
-		for existstack in items.values():
-			if existstack.type == stack.type:
-				for i in range(0,stack.count):
-					if not (existstack.type.weight*existstack.count+1)> Global.data.get_stat_or_null("WeightPerSlot").final_val:
-						existstack.count += 1
-						test=true
-		if test: 
-			updated.emit()
-			return true
-		else: return false
-	elif items.size()<size:
-		for i in range(0,size):
-			if i not in items.keys():
-				items[i]=stack.duplicate()
-				updated.emit()
-				return true
-		return false
-	else: return false
-	
+	if stack.type not in currentTypes && items.size()==size: return false
+	print(stack.count)
+	for i in range(0,stack.count):
+		var test = true
+		if stack.type in currentTypes:
+			for itstack in items.values():
+				if itstack.type == stack.type && (itstack.count+1)*stack.type.weight<=maxweight:
+					itstack.add(1)
+					updated.emit()
+					test = false
+					break
+		if items.size()<size && test:
+			for j in range(0,size):
+				if j not in items.keys():
+					var tempstack = stack.duplicate()
+					tempstack.count=1
+					set_slot(j,tempstack)
+					break
+	return true
 
 func clear():
 	updated.emit()

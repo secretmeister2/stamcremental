@@ -14,6 +14,7 @@ var data:SaveData:
 func stat_changed_func(stat:StatDef):
 	stat_changed.emit(stat)
 
+
 func _init() -> void:
 	data = load("res://savedata/save.tres")
 # Vars used for tree

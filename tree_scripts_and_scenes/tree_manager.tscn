@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cex30e65hhxk5"]
+[gd_scene load_steps=3 format=3 uid="uid://cex30e65hhxk5"]
 
 [ext_resource type="Script" uid="uid://1rd2acdp44ws" path="res://tree_scripts_and_scenes/tree_manager.gd" id="1_to3ld"]
+[ext_resource type="PackedScene" uid="uid://mw8q1ojei5yc" path="res://gameplay_scripts_and_scenes/inventorySystem/inventory.tscn" id="2_jp2gy"]
 
 [node name="TreeManager" type="Control"]
 layout_mode = 3
@@ -28,7 +29,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+size = Vector2i(2, 2)
 render_target_update_mode = 4
 
 [node name="Connects" type="Node2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
@@ -38,6 +39,11 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="HBoxContainer/SubViewportContainer/SubViewport"]
 position = Vector2(-3, 3)
 position_smoothing_speed = 50.0
+
+[node name="Inventory" parent="HBoxContainer" instance=ExtResource("2_jp2gy")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
 
 [node name="Recenter" type="Button" parent="."]
 layout_mode = 1

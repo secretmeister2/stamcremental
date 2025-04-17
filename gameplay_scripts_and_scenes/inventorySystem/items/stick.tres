@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://bhx3jwv4ijj3g"
 [resource]
 script = ExtResource("1_fd3mu")
 name = "Stick"
-weight = 0.5
+weight = 0.3
 tags = Array[String](["Primitive", "Wooden"])
 renders = Dictionary[int, ExtResource("2_p4de6")]({
 0: SubResource("Resource_i7kgs")

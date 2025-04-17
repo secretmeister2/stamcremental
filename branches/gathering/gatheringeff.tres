@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ModifierAbility" load_steps=5 format=3 uid="uid://dbjnixw7h6txh"]
+
+[ext_resource type="Script" uid="uid://ds1lye3gg7pea" path="res://tree_scripts_and_scenes/nodeTypes/modifier_ability.gd" id="1_uaje3"]
+[ext_resource type="Script" uid="uid://cimwmsmaggfd2" path="res://statSystem/condition.gd" id="2_bn4s0"]
+[ext_resource type="Script" uid="uid://y7fnxk45rnbh" path="res://statSystem/modifier.gd" id="3_jkiv0"]
+
+[sub_resource type="Resource" id="Resource_uaje3"]
+script = ExtResource("3_jkiv0")
+conditions = Array[ExtResource("2_bn4s0")]([])
+affected_stat = "GatheringEfficiency"
+modify_type = "Additive"
+useValue = 0.1
+isGood = true
+metadata/_custom_type_script = ExtResource("3_jkiv0")
+
+[resource]
+script = ExtResource("1_uaje3")
+modifiers = [SubResource("Resource_uaje3")]
+point_cost = 3
+item_cost_mult = 0.0
+metadata/_custom_type_script = ExtResource("1_uaje3")

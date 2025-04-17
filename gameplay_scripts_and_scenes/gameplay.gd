@@ -85,20 +85,24 @@ func move_player(place:ColorRect):
 			player.pivot_offset=2*player.size
 			player.set_anchors_preset(Control.PRESET_TOP_LEFT, true)
 		Global.player_moved_to.emit(place)
+		if playing == true: stam -= place.get_meta("tile").move_cost
 		if place.get_child(0):
 			if place.get_child(0).has_meta("deco"):
+				var test = false
+				var deco = place.get_child(0).get_meta("deco")
 				var eff = Global.data.get_stat_or_null("GatheringEfficiency").final_val
 				for i in range(0,floor(eff)):
-					Inventory.add_item(place.get_child(0).get_meta("deco").stack)
+					if Inventory.add_item(deco.stack):
+						test=true
 				if randf()<eff-floor(eff):
-					Inventory.add_item(place.get_child(0).get_meta("deco").stack)
-				if place.get_child(0).get_meta("deco").cost:
-					stam -= place.get_child(0).get_meta("deco").cost
-				if place.get_child(0).get_meta("deco").consume:
+					if Inventory.add_item(deco.stack):
+						test=true
+				if test && deco.cost:
+					stam -= deco.cost
+				if test && deco.consume:
 					place.get_child(0).queue_free()
 					player.pivot_offset=player.size/2
 					player.set_anchors_preset(Control.PRESET_CENTER, true)
-		if playing == true: stam -= place.get_meta("tile").move_cost
 
 ## Get a relative node from a node and offset
 func get_relative(tile:ColorRect, offset:Vector2)->ColorRect:

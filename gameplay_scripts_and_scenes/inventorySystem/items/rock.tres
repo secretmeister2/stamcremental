@@ -21,7 +21,7 @@ metadata/_custom_type_script = "uid://bhx3jwv4ijj3g"
 [resource]
 script = ExtResource("1_5vuho")
 name = "Rock"
-weight = 0.2
+weight = 0.5
 tags = Array[String](["Primitive", "Stone"])
 renders = Dictionary[int, ExtResource("1_pecbx")]({
 0: SubResource("Resource_1hvm7")

@@ -2,6 +2,8 @@ extends Resource
 class_name SaveData
 signal updated(thing)
 
+@export_custom(PROPERTY_HINT_DICTIONARY_TYPE, "4:;28:24/17:ItemType") var test : Dictionary
+
 @export var modifiers:Array:
 	set(value):
 		modifiers = value
@@ -9,7 +11,6 @@ signal updated(thing)
 @export var unlocked_tiles:Array[Tile]:
 	set(value):
 		unlocked_tiles = value
-		print("UpdatedDataTiles")
 		updated.emit()
 @export var unlocked_decos:Array[Deco]:
 	set(value):

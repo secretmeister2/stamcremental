@@ -1,30 +1,47 @@
 extends TreeNodeType
 class_name TileOrDecoUnlock
-@export var new_tile_or_deco: TilesAndDecos:
+
+var new_tile_or_deco: TilesAndDecos:
 	set(value):
 		new_tile_or_deco=value
+
 var tiledecodef=preload("res://tileAndDecoDefs/tilesanddecosdef.tres")
+
 func bought():
 	if is_instance_of(new_tile_or_deco, Tile):
 		Global.data.unlocked_tiles.append(new_tile_or_deco)
 	elif is_instance_of(new_tile_or_deco, Deco):
 		Global.data.unlocked_decos.append(new_tile_or_deco)
-		
-func gen_ability(points:int, currentTiles:Array[Tile], currentDecos:Array[Deco]) ->TilesAndDecos:
-	if randf()<0.5 and tiledecodef.tiles_rarities.keys()!=currentTiles:
-		var possibleTiles=tiledecodef.tiles_rarities.keys()
-		for tile in currentTiles:
-			possibleTiles.erase(tile)
-		new_tile_or_deco=tiledecodef.choose_random(possibleTiles,currentTiles,points)
-		if new_tile_or_deco==null: return null
-	elif tiledecodef.decos_rarities.keys()!=currentDecos:
-		var possibleDecos=tiledecodef.decos_rarities.keys()
-		for deco in currentDecos:
-			possibleDecos.erase(deco)
-		new_tile_or_deco=tiledecodef.choose_random(possibleDecos,currentDecos,points)
-		if new_tile_or_deco==null: return null
-	return new_tile_or_deco
+
+func gen_ability(points:int, currentTiles:Array[Tile], currentDecos:Array[Deco]):
+	var validTiles = tiledecodef.tiles_rarities.keys().duplicate()
+	for item in currentTiles:
+		validTiles.erase(item)
+	var validDecos = tiledecodef.decos_rarities.keys().duplicate()
+	for deco in currentDecos:
+		validDecos.erase(deco)
+	var toerase:Array
+	for deco in validDecos:
+		var test = false
+		for tile in deco.tilesChance.keys():
+			if tile in currentTiles.map(func name(value):return value.name):
+				test=true
+		if not test: toerase.append(deco)
+	for deco in toerase:
+		validDecos.erase(deco)
+	var valid_tecos:Array = []
+	valid_tecos.append_array(validTiles)
+	valid_tecos.append_array(validDecos)
+	print(valid_tecos.map(func name(value):return value.name))
+	valid_tecos.shuffle()
+	var highest:TilesAndDecos
+	for i in range(0,points):
+		var test = valid_tecos.pick_random()
+		if not highest or tiledecodef.combined_rarities.get(test) > tiledecodef.combined_rarities.get(highest):
+			highest = test
+	new_tile_or_deco=highest
+	return highest
 
 func parse()->String:
 	print("ParseNewTile")
-	return "This unlocks the " + new_tile_or_deco.parse() +".\nIt has a cost of "
+	return "Cost: \n This unlocks the " + new_tile_or_deco.parse()

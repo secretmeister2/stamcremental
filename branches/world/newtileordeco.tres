@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TileOrDecoUnlock" load_steps=2 format=3 uid="uid://cq2437gv2wyl2"]
+
+[ext_resource type="Script" uid="uid://1fbslpxmgvvc" path="res://tree_scripts_and_scenes/nodeTypes/new_tile_or_deco.gd" id="1_toxe2"]
+
+[resource]
+script = ExtResource("1_toxe2")
+point_cost = 2
+item_cost_mult = 0.0
+metadata/_custom_type_script = ExtResource("1_toxe2")
